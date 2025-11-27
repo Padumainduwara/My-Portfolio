@@ -20,7 +20,7 @@ const partners = [
   { name: "HK Sports", src: "/partners/hk-sport.png" },
   { name: "IntelliPark", src: "/partners/intellipark.png" },
   { name: "Kingxer Marketing", src: "/partners/kingxer-marketing.png" },
-  { name: "Kliko", src: "/partners/kliko-01.png" },
+  { name: "Kliko", src: "/partners/kliko.png" },
   { name: "Lahya", src: "/partners/lahya.png" },
   { name: "Lak Deepa", src: "/partners/lakdeepa.png" },
   { name: "Lakmal Construction", src: "/partners/lakmal-cosn.png" },
