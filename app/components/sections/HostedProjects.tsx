@@ -1,7 +1,7 @@
 "use client";
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Globe, ArrowUpRight, Zap, ChevronDown } from 'lucide-react'; // Layout icon removed as it's replaced by live view
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Globe, ArrowUpRight, Zap, ChevronDown, Loader2 } from 'lucide-react';
 
 // Project Data
 const projects = [
@@ -112,6 +112,121 @@ const projects = [
   },
 ];
 
+// --- SMART COMPONENT FOR OPTIMIZED LOADING ---
+const ProjectCard = ({ project, index }: { project: any, index: number }) => {
+    // 1. Detect if the card is on the screen
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" }); // Only load when 100px into view
+    
+    // 2. State to track if the iframe has finished loading
+    const [iframeLoaded, setIframeLoaded] = useState(false);
+
+    return (
+        <motion.a
+            ref={ref}
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: index % 3 * 0.1, duration: 0.5 }}
+            className="group relative block h-full"
+        >
+            <div className="h-full rounded-2xl bg-[#080808] border border-white/5 overflow-hidden transition-all duration-500 group-hover:border-white/20 group-hover:translate-y-[-10px] group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] flex flex-col">
+                
+                {/* Browser Window Header */}
+                <div className="h-9 bg-white/5 border-b border-white/5 flex items-center px-4 gap-2 z-20 relative">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 group-hover:bg-red-500 transition-colors duration-300" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 group-hover:bg-yellow-500 transition-colors duration-300" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 group-hover:bg-green-500 transition-colors duration-300" />
+                    <div className="ml-4 flex-1 h-5 rounded-md bg-black/20 flex items-center px-2 overflow-hidden">
+                        <span className="text-[10px] font-mono text-gray-600 truncate group-hover:text-gray-400 transition-colors">
+                            {project.url.replace(/^https?:\/\//, '')}
+                        </span>
+                    </div>
+                </div>
+
+                {/* --- SMART PREVIEW AREA --- */}
+                <div className="relative h-48 w-full bg-[#0c0c0c] overflow-hidden group-hover:bg-[#111] transition-colors">
+                    
+                    {/* LAYER 1: The "Skeleton" / Placeholder 
+                        This shows a beautiful gradient + spinner immediately. 
+                        It prevents the "Empty Box" look on mobile.
+                    */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10`} />
+                    
+                    {!iframeLoaded && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                            <Loader2 className="w-6 h-6 text-white/30 animate-spin mb-2" />
+                            <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">Loading Preview...</span>
+                        </div>
+                    )}
+
+                    {/* LAYER 2: The Live Iframe 
+                        1. Only renders if 'isInView' is true (Saves 90% performance).
+                        2. 'loading="lazy"' attribute for browser optimization.
+                        3. Fade in animation once loaded.
+                    */}
+                    {isInView && (
+                        <div className={`absolute inset-0 w-[1280px] h-[768px] origin-top-left scale-[0.28] sm:scale-[0.35] md:scale-[0.25] lg:scale-[0.3] xl:scale-[0.33] transition-opacity duration-700 pointer-events-none ${iframeLoaded ? 'opacity-100' : 'opacity-0'}`}>
+                            <iframe 
+                                src={project.url} 
+                                title={`${project.title} Live Preview`}
+                                className="w-full h-full border-0"
+                                loading="lazy"
+                                onLoad={() => setIframeLoaded(true)}
+                                tabIndex={-1}
+                            />
+                        </div>
+                    )}
+
+                    {/* Overlays for Interaction & Design */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10 mix-blend-overlay group-hover:opacity-20 transition-all duration-500 z-20 pointer-events-none`} />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-500 z-20 pointer-events-none" />
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay z-20 pointer-events-none" />
+
+                    {/* "Live" Badge */}
+                    <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-1.5 z-30">
+                         <span className={`w-1.5 h-1.5 rounded-full ${iframeLoaded ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'}`} />
+                         <span className="text-[10px] font-bold text-white tracking-wide uppercase">
+                             {iframeLoaded ? 'Live View' : 'Connecting'}
+                         </span>
+                    </div>
+                </div>
+
+                {/* Content Area */}
+                <div className="p-6 flex flex-col flex-grow relative overflow-hidden z-30 bg-[#080808]">
+                    <div className={`absolute -right-10 -bottom-10 w-40 h-40 bg-gradient-to-br ${project.color} opacity-0 blur-[60px] group-hover:opacity-20 transition-opacity duration-500`} />
+                    
+                    <div className="mb-3">
+                        <span className={`text-[10px] font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${project.color}`}>
+                            {project.category}
+                        </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-100 transition-colors flex items-center gap-2">
+                        {project.title}
+                        <ArrowUpRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-gray-400" />
+                    </h3>
+                    
+                    <p className="text-sm text-gray-500 leading-relaxed mb-4 group-hover:text-gray-400 transition-colors line-clamp-2">
+                        {project.desc}
+                    </p>
+
+                    <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-xs text-gray-600 font-mono group-hover:text-gray-400 transition-colors">
+                            <Zap size={12} className="text-yellow-500/50 group-hover:text-yellow-500 transition-colors" />
+                            <span>Deployed</span>
+                        </div>
+                        <div className={`w-12 h-[2px] rounded-full bg-gradient-to-r ${project.color} opacity-30 group-hover:opacity-100 transition-all duration-500`} />
+                    </div>
+                </div>
+            </div>
+        </motion.a>
+    );
+};
+
 export default function HostedProjects() {
   const [showAll, setShowAll] = useState(false);
   const displayedProjects = showAll ? projects : projects.slice(0, 9);
@@ -136,10 +251,9 @@ export default function HostedProjects() {
           className="flex flex-col items-center text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm mb-6">
-  <Globe size={14} className="text-purple-400" />
-  <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">Live Deployments</span>
-</div>
-          {/* "My Services" - Big Title */}
+            <Globe size={14} className="text-purple-400" />
+            <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">Live Deployments</span>
+          </div>
           <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Work</span>
           </h2>
@@ -151,103 +265,7 @@ export default function HostedProjects() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedProjects.map((project, index) => (
-            <motion.a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index % 3 * 0.1, duration: 0.5 }}
-              className="group relative block h-full"
-            >
-              {/* 3D Card Container */}
-              <div className="h-full rounded-2xl bg-[#080808] border border-white/5 overflow-hidden transition-all duration-500 group-hover:border-white/20 group-hover:translate-y-[-10px] group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] flex flex-col">
-                
-                {/* --- Browser Window Header --- */}
-                <div className="h-9 bg-white/5 border-b border-white/5 flex items-center px-4 gap-2 z-20 relative">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 group-hover:bg-red-500 transition-colors duration-300" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 group-hover:bg-yellow-500 transition-colors duration-300" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 group-hover:bg-green-500 transition-colors duration-300" />
-                  
-                  {/* URL Bar Mockup */}
-                  <div className="ml-4 flex-1 h-5 rounded-md bg-black/20 flex items-center px-2 overflow-hidden">
-                    <span className="text-[10px] font-mono text-gray-600 truncate group-hover:text-gray-400 transition-colors">
-                      {project.url.replace(/^https?:\/\//, '')}
-                    </span>
-                  </div>
-                </div>
-
-                {/* --- Project Live Preview Area (UPDATED) --- */}
-                <div className="relative h-48 w-full bg-[#0c0c0c] overflow-hidden group-hover:bg-[#111] transition-colors">
-                  
-                  {/* LIVE IFRAME CONTAINER 
-                      We set a large width (like a desktop) and then scale it down to fit the container.
-                  */}
-                  <div className="absolute inset-0 w-[1280px] h-[768px] origin-top-left scale-[0.28] sm:scale-[0.35] md:scale-[0.25] lg:scale-[0.3] xl:scale-[0.33] transition-all duration-500 pointer-events-none">
-                      <iframe 
-                          src={project.url} 
-                          title={`${project.title} Live Preview`}
-                          className="w-full h-full border-0"
-                          loading="lazy" // Performance optimization
-                          tabIndex={-1}
-                      />
-                  </div>
-
-                  {/* INTERACTION OVERLAY & COLOR BLEND
-                      This transparent layer sits ON TOP of the iframe. 
-                      1. It prevents clicking inside the iframe (so the main card link works).
-                      2. It adds the project's color tint back into the design.
-                  */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10 mix-blend-overlay group-hover:opacity-20 transition-all duration-500 z-10`}></div>
-                  {/* A slight dark tint to ensure the text below is always readable even if the site is bright white */}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-500 z-10"></div>
-
-                  
-                  {/* Grid Pattern Overlay (Kept for texture) */}
-                  <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay z-10" />
-
-                  {/* "Live" Badge */}
-                  <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-1.5 z-20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[10px] font-bold text-white tracking-wide uppercase">Live View</span>
-                  </div>
-                </div>
-
-                {/* --- Content Area --- */}
-                <div className="p-6 flex flex-col flex-grow relative overflow-hidden z-20 bg-[#080808]">
-                  
-                  {/* Glow Effect on Hover */}
-                  <div className={`absolute -right-10 -bottom-10 w-40 h-40 bg-gradient-to-br ${project.color} opacity-0 blur-[60px] group-hover:opacity-20 transition-opacity duration-500`} />
-
-                  <div className="mb-3">
-                    <span className={`text-[10px] font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${project.color}`}>
-                      {project.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-100 transition-colors flex items-center gap-2">
-                    {project.title}
-                    <ArrowUpRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-gray-400" />
-                  </h3>
-                  
-                  <p className="text-sm text-gray-500 leading-relaxed mb-4 group-hover:text-gray-400 transition-colors line-clamp-2">
-                    {project.desc}
-                  </p>
-
-                  {/* Bottom Line Decor */}
-                  <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs text-gray-600 font-mono group-hover:text-gray-400 transition-colors">
-                      <Zap size={12} className="text-yellow-500/50 group-hover:text-yellow-500 transition-colors" />
-                      <span>Deployed</span>
-                    </div>
-                    <div className={`w-12 h-[2px] rounded-full bg-gradient-to-r ${project.color} opacity-30 group-hover:opacity-100 transition-all duration-500`} />
-                  </div>
-
-                </div>
-              </div>
-            </motion.a>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
 
