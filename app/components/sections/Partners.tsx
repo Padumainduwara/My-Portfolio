@@ -2,41 +2,42 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Handshake } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 // --- DATA ---
 const partners = [
-  { name: "EcoLK Graphics", src: "/partners/20220306_090441.png" },
-  { name: "Agro Ventures", src: "/partners/Agro Ventures.png" },
-  { name: "Axiata", src: "/partners/Axiata_Logo.png" },
-  { name: "Axiora Labs", src: "/partners/Axiora Labs Logo.png" },
-  { name: "Axiora", src: "/partners/Axiora Logo.png" },
-  { name: "Centrum", src: "/partners/Centrum_Class.png" },
-  { name: "Crypto Cartel", src: "/partners/CRYPTO CARTEL LOGO.png" },
-  { name: "ICBT Society", src: "/partners/CSOFICBT_Logo.png" },
-  { name: "Dragon Fashion", src: "/partners/dragon_fashion.png" },
-  { name: "Fitness Kingdom", src: "/partners/FITNESS KINGDOM LOGO.png" },
-  { name: "Health Care VIP", src: "/partners/healthcare_Logo.png" },
-  { name: "HK Sports", src: "/partners/Hk_Sport.png" },
-  { name: "IntelliPark", src: "/partners/IntelliPark.png" },
-  { name: "Kingxer Marketing", src: "/partners/KINGXER MARKETING LOGO.png" },
-  { name: "Kliko", src: "/partners/Kliko-01.png" },
+  { name: "Agro Ventures", src: "/partners/agro-ventures.png" },
+  { name: "Axiata", src: "/partners/axiata-logo.png" },
+  { name: "Axiora", src: "/partners/axiora.png" },
+  { name: "Axiora Labs", src: "/partners/axiora-labs.png" },
+  { name: "Centrum", src: "/partners/centrum-class.png" },
+  { name: "Crypto Cartel", src: "/partners/crypto-cartel.png" },
+  { name: "ICBT Society", src: "/partners/csoficbt-logo.png" },
+  { name: "Dragon Fashion", src: "/partners/dragon-fashion.png" },
+  { name: "EcoLK Graphics", src: "/partners/ecolk-graphics.png" },
+  { name: "Fitness Kingdom", src: "/partners/fitness-kingdom.png" },
+  { name: "Health Care VIP", src: "/partners/healthcare.png" },
+  { name: "HK Sports", src: "/partners/hk-sport.png" },
+  { name: "IntelliPark", src: "/partners/intellipark.png" },
+  { name: "Kingxer Marketing", src: "/partners/kingxer-marketing.png" },
+  { name: "Kliko", src: "/partners/kliko-01.png" },
   { name: "Lahya", src: "/partners/lahya.png" },
-  { name: "Lak Deepa", src: "/partners/LakDeepaLogo.png" },
-  { name: "Lakmal Construction", src: "/partners/Lakmal Cosn.jpg" }, 
-  { name: "Lankesha Dance", src: "/partners/Lankesha logo.png" },
-  { name: "Madhara", src: "/partners/Madhara Logo.png" },
+  { name: "Lak Deepa", src: "/partners/lakdeepa.png" },
+  { name: "Lakmal Construction", src: "/partners/lakmal-cosn.png" },
+  { name: "Lankesha Dance", src: "/partners/lankesha.png" },
+  { name: "Madhara", src: "/partners/madhara.png" },
   { name: "Dare to Dazzle", src: "/partners/nadanu.png" },
-  { name: "Nimlo Engineering", src: "/partners/Nimlo_Eng.png" },
-  { name: "Real Smart", src: "/partners/Real Smart.png" },
-  { name: "Rodney Place", src: "/partners/RodneyPlace_Logo.png" },
-  { name: "Swasthika", src: "/partners/Sawasthika_Logo.png" },
-  { name: "Scholaraice", src: "/partners/Scholaraice .png" },
-  { name: "Sen Sera", src: "/partners/Sensara_Logo.png" },
-  { name: "Sentio 360", src: "/partners/Sentio360_logo.png" },
+  { name: "Nimlo Engineering", src: "/partners/nimlo-eng.png" },
+  { name: "Real Smart", src: "/partners/real-smart.png" },
+  { name: "Rodney Place", src: "/partners/rodney-place.png" },
+  { name: "Swasthika", src: "/partners/sawasthika.png" },
+  { name: "Scholaraice", src: "/partners/scholaraice.png" },
+  { name: "Sen Sera", src: "/partners/sensara.png" },
+  { name: "Sentio 360", src: "/partners/sentio360.png" },
   { name: "Shathvika", src: "/partners/shathvika.png" },
-  { name: "Subhasadhaka", src: "/partners/Subhasadhaka_Pre_Scl.png" },
-  { name: "Tesso", src: "/partners/tesso_logo.png" },
-  { name: "WSP", src: "/partners/Wsp_Logo.png" },
+  { name: "Subhasadhaka", src: "/partners/subhasadhaka.png" },
+  { name: "Tesso", src: "/partners/tesso.png" },
+  { name: "WSP", src: "/partners/wsp.png" },
 ];
 
 // Split data into two arrays
@@ -44,11 +45,29 @@ const firstRow = partners.slice(0, Math.ceil(partners.length / 2));
 const secondRow = partners.slice(Math.ceil(partners.length / 2));
 
 export default function InfinitePartners() {
+  // State to manage animation speed (duration)
+  const [duration, setDuration] = useState(50); // Default to 50s (Desktop speed)
+
+  useEffect(() => {
+    // Function to check screen size and adjust speed
+    const updateSpeed = () => {
+      // If screen width is less than 768px (Mobile), make it faster (lower duration = faster)
+      // Desktop: 50s | Mobile: 25s (2x faster feeling)
+      setDuration(window.innerWidth < 768 ? 25 : 50);
+    };
+
+    // Run on mount
+    updateSpeed();
+
+    // Run on resize
+    window.addEventListener('resize', updateSpeed);
+    return () => window.removeEventListener('resize', updateSpeed);
+  }, []);
+
   return (
-    // FIX: Removed 'bg-[#050505]' to make it transparent and blend with the main background
     <section className="py-24 relative z-10 overflow-hidden">
       
-      {/* Background Aesthetic - kept faint glow but removed solid colors */}
+      {/* Background Aesthetic */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 mb-16 text-center relative z-20">
@@ -72,15 +91,15 @@ export default function InfinitePartners() {
       {/* --- Marquee Section --- */}
       <div className="flex flex-col gap-8 relative">
         
-        {/* Gradient Fade on Sides - Updated to transparent to avoid black bars */}
+        {/* Gradient Fade on Sides */}
         <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-black/80 to-transparent z-20 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-black/80 to-transparent z-20 pointer-events-none" />
 
-        {/* Row 1: Moves RIGHT */}
-        <MarqueeRow items={firstRow} direction="right" speed={50} />
+        {/* Row 1: Moves RIGHT - passing dynamic 'duration' */}
+        <MarqueeRow items={firstRow} direction="right" speed={duration} />
 
-        {/* Row 2: Moves LEFT */}
-        <MarqueeRow items={secondRow} direction="left" speed={50} />
+        {/* Row 2: Moves LEFT - passing dynamic 'duration' */}
+        <MarqueeRow items={secondRow} direction="left" speed={duration} />
 
       </div>
     </section>
@@ -100,7 +119,7 @@ function MarqueeRow({ items, direction, speed }: { items: typeof partners, direc
         transition={{ 
           repeat: Infinity, 
           ease: "linear", 
-          duration: speed 
+          duration: speed // Controlled by the state in parent
         }}
         whileHover={{ animationPlayState: "paused" }} 
       >
