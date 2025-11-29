@@ -5,6 +5,15 @@ import { Globe, ArrowUpRight, Zap, ChevronDown, Loader2 } from 'lucide-react';
 
 // Project Data
 const projects = [
+  // --- NEW PROJECT ADDED HERE (TOP) ---
+  {
+    title: "Let's Help Others LK",
+    url: "https://letshelpotherslk.vercel.app/",
+    category: "Non-Profit / Social Service",
+    desc: "A dedicated digital platform empowering community service and donation drives in Sri Lanka.",
+    color: "from-rose-500 to-orange-500"
+  },
+  // ------------------------------------
   {
     title: "Axiora Labs",
     url: "http://axioralabs.com/",
