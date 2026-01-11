@@ -5,7 +5,6 @@ import { Globe, ArrowUpRight, Zap, ChevronDown, Loader2 } from 'lucide-react';
 
 // Project Data
 const projects = [
-  // --- NEW PROJECT ADDED HERE (TOP) ---
   {
     title: "Let's Help Others LK",
     url: "https://letshelpotherslk.vercel.app/",
@@ -13,115 +12,128 @@ const projects = [
     desc: "A dedicated digital platform empowering community service and donation drives in Sri Lanka.",
     color: "from-rose-500 to-orange-500"
   },
-  // ------------------------------------
   {
-    title: "Axiora Labs",
-    url: "http://axioralabs.com/",
-    category: "Corporate",
-    desc: "Innovation hub for next-gen software solutions.",
-    color: "from-blue-500 to-cyan-500"
+    title: "Natural Latex Foam Sri Lanka",
+    url: "https://naturallatexfoamsrilanka.lk",
+    category: "Manufacturing / Export",
+    desc: "Premium 100% natural latex foam mattresses and sleep products manufactured in Sri Lanka.",
+    color: "from-green-600 to-lime-500"
   },
   {
     title: "Axiora Blogs",
-    url: "https://axiora-blogs.vercel.app/",
+    url: "https://axiorablogs.com",
     category: "Blog / Content",
     desc: "A modern blogging platform for tech insights.",
     color: "from-purple-500 to-pink-500"
   },
   {
     title: "Madhara Service Center",
-    url: "https://madhara-services.vercel.app/",
+    url: "https://madhara-services.vercel.app",
     category: "Business Service",
     desc: "Digital presence for service center operations.",
     color: "from-orange-500 to-red-500"
   },
   {
-    title: "Your Guided Journey to Islam",
-    url: "https://think-like-a-muslim-axiora.vercel.app/",
-    category: "Educational / Religious",
-    desc: "An interactive guide and educational platform.",
-    color: "from-emerald-500 to-green-500"
-  },
-  {
-    title: "St. Joseph's College Nugegoda",
-    url: "https://stjosephscollegenugegoda.lk/",
-    category: "Educational Institute",
-    desc: "Official web portal for St. Joseph's College.",
-    color: "from-blue-600 to-indigo-600"
+    title: "SKD Event Management",
+    url: "https://skdevents.lk",
+    category: "Event Management",
+    desc: "Professional full-service event planning and management solutions for all occasions.",
+    color: "from-violet-600 to-fuchsia-600"
   },
   {
     title: "Doc Do Online Channeling",
-    url: "https://doc-do-clinic-app.vercel.app/",
+    url: "https://doc-do-clinic-app.vercel.app",
     category: "Healthcare",
     desc: "Seamless doctor channeling and appointment system.",
     color: "from-teal-400 to-blue-500"
   },
   {
-    title: "St. John's College Official",
-    url: "https://stjohnscollege.lk/",
-    category: "Educational Institute",
-    desc: "The digital face of St. John's College.",
-    color: "from-yellow-500 to-orange-500"
-  },
-  {
-    title: "St. Joseph's Girls School",
-    url: "https://st-josephs-rho.vercel.app/",
-    category: "Educational Institute",
-    desc: "Official website for St. Joseph's Girls School.",
-    color: "from-pink-500 to-rose-500"
-  },
-  {
-    title: "Nexentia JICTS",
-    url: "https://www.nexentiajicts.com/",
-    category: "Event / Competition",
-    desc: "ICT competition portal for St. Joseph's College.",
-    color: "from-cyan-400 to-blue-600"
-  },
-  {
-    title: "Live Quotation Generator",
-    url: "https://quotation-generator-livid.vercel.app/",
-    category: "Web Utility",
-    desc: "Automated tool for generating instant business quotations.",
-    color: "from-indigo-500 to-purple-500"
-  },
-  {
-    title: "Network Company Web",
-    url: "https://networxx-web.vercel.app/",
-    category: "Corporate",
-    desc: "Modern landing page for networking solutions.",
-    color: "from-gray-200 to-gray-400"
-  },
-  {
-    title: "Build With Live",
-    url: "https://buildwithlive.com/",
+    title: "Build With Videos",
+    url: "https://buildwithvideos.com",
     category: "Service Platform",
     desc: "Platform for real-time construction updates.",
     color: "from-amber-500 to-yellow-500"
   },
   {
+    title: "St. Joseph's Girls School",
+    url: "https://st-josephs-rho.vercel.app",
+    category: "Educational Institute",
+    desc: "Official website for St. Joseph's Girls School.",
+    color: "from-pink-500 to-rose-500"
+  },
+  {
+    title: "St. John's College Official",
+    url: "https://stjohnscollege.lk",
+    category: "Educational Institute",
+    desc: "The digital face of St. John's College.",
+    color: "from-yellow-500 to-orange-500"
+  },
+  {
+    title: "St. Joseph's College Nugegoda",
+    url: "https://stjosephscollegenugegoda.lk",
+    category: "Educational Institute",
+    desc: "Official web portal for St. Joseph's College.",
+    color: "from-blue-600 to-indigo-600"
+  },
+  {
+    title: "Nexentia JICTS",
+    url: "https://www.nexentiajicts.com",
+    category: "Event / Competition",
+    desc: "ICT competition portal for St. Joseph's College.",
+    color: "from-cyan-400 to-blue-600"
+  },
+  {
+    title: "Network Company Web",
+    url: "https://networxx-web.vercel.app",
+    category: "Corporate",
+    desc: "Modern landing page for networking solutions.",
+    color: "from-gray-200 to-gray-400"
+  },
+  {
     title: "QR Code Generator",
-    url: "https://qr.axioralabs.com/",
+    url: "https://qr.axioralabs.com",
     category: "Tools",
     desc: "Fast and reliable QR code generation tool.",
     color: "from-green-400 to-emerald-600"
   },
   {
     title: "Old Palm House Sri Lanka",
-    url: "http://www.oldpalmhousesrilanka.com/",
+    url: "http://www.oldpalmhousesrilanka.com",
     category: "Hospitality",
     desc: "Elegant website for a luxury villa in Sri Lanka.",
     color: "from-stone-400 to-stone-600"
   },
   {
     title: "Small Cake Shop",
-    url: "https://kids-shop-lxn9.vercel.app/",
+    url: "https://kids-shop-lxn9.vercel.app",
     category: "E-commerce",
     desc: "Delightful online store for cakes and sweets.",
     color: "from-pink-400 to-rose-400"
   },
+  {
+    title: "Axiora Labs",
+    url: "http://axioralabs.com",
+    category: "Corporate",
+    desc: "Innovation hub for next-gen software solutions.",
+    color: "from-blue-500 to-cyan-500"
+  },
+  {
+    title: "Your Guided Journey to Islam",
+    url: "https://think-like-a-muslim-axiora.vercel.app",
+    category: "Educational / Religious",
+    desc: "An interactive guide and educational platform.",
+    color: "from-emerald-500 to-green-500"
+  },
+  {
+    title: "Live Quotation Generator",
+    url: "https://quotation-generator-livid.vercel.app",
+    category: "Web Utility",
+    desc: "Automated tool for generating instant business quotations.",
+    color: "from-indigo-500 to-purple-500"
+  },
 ];
 
-// --- SMART COMPONENT FOR OPTIMIZED LOADING ---
+// --- SMART COMPONENT FOR OPTIMIZED LOADING (UNCHANGED) ---
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
     // 1. Detect if the card is on the screen
     const ref = useRef(null);
@@ -159,10 +171,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                 {/* --- SMART PREVIEW AREA --- */}
                 <div className="relative h-48 w-full bg-[#0c0c0c] overflow-hidden group-hover:bg-[#111] transition-colors">
                     
-                    {/* LAYER 1: The "Skeleton" / Placeholder 
-                        This shows a beautiful gradient + spinner immediately. 
-                        It prevents the "Empty Box" look on mobile.
-                    */}
+                    {/* LAYER 1: The "Skeleton" / Placeholder */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10`} />
                     
                     {!iframeLoaded && (
@@ -172,11 +181,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                         </div>
                     )}
 
-                    {/* LAYER 2: The Live Iframe 
-                        1. Only renders if 'isInView' is true (Saves 90% performance).
-                        2. 'loading="lazy"' attribute for browser optimization.
-                        3. Fade in animation once loaded.
-                    */}
+                    {/* LAYER 2: The Live Iframe */}
                     {isInView && (
                         <div className={`absolute inset-0 w-[1280px] h-[768px] origin-top-left scale-[0.28] sm:scale-[0.35] md:scale-[0.25] lg:scale-[0.3] xl:scale-[0.33] transition-opacity duration-700 pointer-events-none ${iframeLoaded ? 'opacity-100' : 'opacity-0'}`}>
                             <iframe 
@@ -266,9 +271,16 @@ export default function HostedProjects() {
           <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Work</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg mb-8">
             A curated collection of live websites and applications I've engineered and deployed.
           </p>
+          
+          {/* Total Deployments Badge - MOVED HERE AS REQUESTED */}
+          <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent">
+            <div className="px-6 py-2 rounded-full bg-[#050505] text-sm text-gray-500 border border-white/5">
+              Total Live Deployments: <span className="text-white font-bold">{projects.length}</span>
+            </div>
+          </div>
         </motion.div>
 
         {/* Projects Grid */}
@@ -293,15 +305,6 @@ export default function HostedProjects() {
             </button>
           </div>
         )}
-
-        {/* Bottom Decoration */}
-        <div className="mt-12 text-center">
-          <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent">
-            <div className="px-6 py-2 rounded-full bg-[#050505] text-sm text-gray-500">
-              Total Live Deployments: <span className="text-white font-bold">{projects.length}</span>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section>
