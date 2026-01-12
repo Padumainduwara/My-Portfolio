@@ -1,60 +1,93 @@
-"use client"; // <--- THIS LINE FIXES THE ERROR
+"use client";
 
-import { Github, Linkedin, Mail, Phone, MapPin, Facebook, Download } from 'lucide-react';
+import { Github, Linkedin, Facebook, Download, ChevronUp } from 'lucide-react';
 import GlowButton from '../ui/GlowButton';
 
 export default function Footer() {
-  return (
-    <footer className="border-t border-white/10 bg-[#050505] pt-20 pb-10 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-        <div>
-          <h3 className="text-3xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">PI.</h3>
-          <p className="text-gray-500 leading-relaxed mb-6">
-            Crafting world-class digital experiences from Maharagama, Sri Lanka. 
-            Let's build something amazing together.
-          </p>
-          <GlowButton href="/Induwara.pdf" download icon={Download}>
-            Download CV
-          </GlowButton>
-        </div>
-        
-        <div>
-          <h4 className="text-white font-bold mb-6 text-xl">Contact Info</h4>
-          <ul className="space-y-4 text-gray-500">
-            <li className="flex items-center gap-4 hover:text-white transition-colors">
-              <Phone size={20} className="text-purple-500" /> 
-              <span>072 411 3376</span>
-            </li>
-            <li className="flex items-center gap-4 hover:text-white transition-colors">
-              <Mail size={20} className="text-purple-500" />
-              <span>induwarapaduma2002@gmail.com</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <MapPin size={20} className="text-purple-500" />
-              <span>131/1 3rd Lane, Maharagama</span>
-            </li>
-          </ul>
-        </div>
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-        <div>
-          <h4 className="text-white font-bold mb-6 text-xl">Connect</h4>
-          <div className="flex gap-4">
-            <a href="https://github.com/Padumainduwara" target="_blank" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all border border-white/10">
-              <Github size={24} />
-            </a>
-            <a href="#" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all border border-white/10">
-              <Linkedin size={24} />
-            </a>
-            <a href="https://facebook.com/padumainduwara" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all border border-white/10">
-              <Facebook size={24} />
-            </a>
+  return (
+    <footer className="border-t border-white/10 bg-[#020010] pt-20 pb-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          
+          {/* Column 1: Brand */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-blue-600 text-white font-bold text-lg shadow-lg">
+                PI
+                <div className="absolute inset-0 border-2 border-white/20 rounded-full w-full h-full animate-[spin_10s_linear_infinite]" />
+              </div>
+              <span className="text-2xl font-bold text-white tracking-tight">
+                Paduma<span className="text-purple-400">.Dev</span>
+              </span>
+            </div>
+            <p className="text-gray-400 leading-relaxed mb-8 max-w-sm">
+              Crafting world-class digital experiences from Maharagama, Sri Lanka. 
+              Let's build something amazing together.
+            </p>
+            <div className="flex gap-4">
+              <SocialLink href="https://github.com/Padumainduwara" icon={Github} />
+              <SocialLink href="#" icon={Linkedin} />
+              <SocialLink href="https://facebook.com/padumainduwara" icon={Facebook} />
+            </div>
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <div>
+            <h4 className="text-white font-bold mb-6 text-lg">Navigation</h4>
+            <ul className="space-y-4 text-gray-500">
+              <li><a href="#hero" className="hover:text-purple-400 transition-colors">Home</a></li>
+              <li><a href="#experience" className="hover:text-purple-400 transition-colors">Experience</a></li>
+              <li><a href="#projects" className="hover:text-purple-400 transition-colors">Projects</a></li>
+              <li><a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Action */}
+          <div>
+            <h4 className="text-white font-bold mb-6 text-lg">Resume</h4>
+            <p className="text-gray-500 text-sm mb-6">
+              Download my CV to see my full professional background and skills.
+            </p>
+            <GlowButton href="/Induwara.pdf" download icon={Download}>
+              Download CV
+            </GlowButton>
           </div>
         </div>
-      </div>
-      
-      <div className="text-center text-gray-700 text-sm border-t border-white/5 pt-8">
-        © {new Date().getFullYear()} Paduma Induwara. All rights reserved.
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-gray-600 text-sm">
+            © {new Date().getFullYear()} Paduma Induwara. All rights reserved.
+          </p>
+          
+          <button 
+            onClick={scrollToTop}
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors group"
+          >
+            Back to Top
+            <div className="p-1 rounded-full bg-white/5 border border-white/10 group-hover:border-purple-500/50 transition-colors">
+              <ChevronUp size={14} />
+            </div>
+          </button>
+        </div>
       </div>
     </footer>
+  );
+}
+
+function SocialLink({ href, icon: Icon }: any) {
+  return (
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white hover:scale-110 transition-all duration-300 border border-white/5"
+    >
+      <Icon size={18} />
+    </a>
   );
 }

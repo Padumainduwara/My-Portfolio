@@ -9,7 +9,8 @@ import Partners from './components/sections/Partners';
 import Reviews from './components/sections/Reviews';
 import Footer from './components/sections/Footer';
 import HostedProjects from './components/sections/HostedProjects'; // ඔබේ Featured Work එක
-import GithubRepos from './components/sections/GithubRepos'; // <--- අලුත් එක මෙතනට
+import GithubRepos from './components/sections/GithubRepos'; 
+import Contact from './components/sections/Contact';// <--- අලුත් එක මෙතනට
 
 export default function Portfolio() {
   return (
@@ -23,17 +24,17 @@ export default function Portfolio() {
       </div>
 
       <div className="relative z-10">
-        <Hero />
+        <section id="hero"><Hero /></section>
         <SkillsMarquee />
-        <Experience />
-        <HostedProjects />  {/* Featured Work Section */}
-        <GithubRepos />     {/* <--- අලුත් GitHub Section එක මෙතනට දාන්න */}
+        <section id="experience"> <Experience /> </section>
+        <section id="projects"> <HostedProjects /> <GithubRepos /> </section>
         <Education />
-        <Services />
+        <section id="services"> <Services /> </section>
         <Certifications />
         <TechGrid />
         <Partners />
         <Reviews />
+        <Contact />
         <Footer />
       </div>
     </main>
