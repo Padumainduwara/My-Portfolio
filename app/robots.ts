@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/private/', '/admin/'], 
+      disallow: ['/private/', '/admin/', '/api/'], // API routes hide karanna
     },
     sitemap: 'https://www.padumainduwara.me/sitemap.xml',
   };

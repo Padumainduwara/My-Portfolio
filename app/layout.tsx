@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// --- VIEWPORT SETTINGS (Optimized for Mobile & Core Web Vitals) ---
+// --- VIEWPORT SETTINGS (Mobile & Core Web Vitals Optimized) ---
 export const viewport: Viewport = {
   themeColor: "#020010",
   colorScheme: "dark",
@@ -26,37 +26,40 @@ export const viewport: Viewport = {
   userScalable: true,
 };
 
-// --- MASTER LEVEL SEO SETUP (The Brain of Your Site) ---
+// --- MASTER LEVEL SEO SETUP (E-E-A-T & Semantic SEO) ---
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.padumainduwara.me'),
   title: {
     default: "Paduma Induwara | Software Engineer & AI Expert Sri Lanka",
     template: "%s | Paduma Induwara",
   },
-  description: "Paduma Induwara is a top-tier Software Engineer, Data Scientist & AI Expert in Sri Lanka. Specializing in Next.js, 3D Web Design, and Cloud Solutions.",
+  description: "Paduma Induwara is a leading Software Engineer & Data Scientist in Sri Lanka. Expert in Next.js, AI, Machine Learning, and 3D Web Development.",
   applicationName: "Paduma Induwara Portfolio",
   authors: [{ name: "Paduma Induwara", url: "https://www.padumainduwara.me" }],
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
   keywords: [
     "Paduma Induwara",
-    "Paduma Induwara Sri Lanka",
-    "Paduma",
     "Induwara",
-    "Software Engineer Pannipitiya",
+    "Paduma Induwara Sri Lanka",
+    "Software Engineer Colombo",
     "Data Scientist Sri Lanka",
     "AI Engineer Sri Lanka",
-    "Next.js Expert",
-    "React Developer",
-    "Three.js Developer",
-    "Web3 Developer",
-    "Maharagama Tech",
-    "Colombo Software Engineer",
+    "Next.js Developer Sri Lanka",
+    "Web3 Developer Sri Lanka",
+    "Three.js Expert",
+    "Full Stack Developer Colombo",
     "Freelance Web Developer Sri Lanka",
     "Best Portfolio Website",
-    "Innovative Web Solutions",
+    "Software Development Sri Lanka",
+    "AI Solutions Sri Lanka",
+    "Machine Learning Expert",
+    "Cloud Computing Sri Lanka",
+    "Tech Innovator Sri Lanka",
+    "Software Development Services",
     "Sinhala Tech",
-    "Software Development Sri Lanka"
+    "Colombo Tech",
+    "Maharagama Tech"
   ],
   creator: "Paduma Induwara",
   publisher: "Paduma Induwara",
@@ -65,7 +68,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  // Robots & Crawling (Technical SEO - Max Visibility)
+  // Technical SEO & Crawling
   robots: {
     index: true,
     follow: true,
@@ -79,7 +82,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // Canonical & Languages (International SEO)
+  // International SEO
   alternates: {
     canonical: "https://www.padumainduwara.me",
     languages: {
@@ -87,24 +90,24 @@ export const metadata: Metadata = {
       'en-LK': 'https://www.padumainduwara.me',
     },
   },
-  // Geo-Targeting (Local SEO - Pannipitiya/Colombo Focus)
+  // Local SEO & Geo-Targeting
   other: {
-    "geo.region": "LK-1", // Western Province
+    "geo.region": "LK-1", 
     "geo.placename": "Pannipitiya, Maharagama, Colombo",
     "geo.position": "6.8412;79.9654",
     "ICBM": "6.8412, 79.9654"
   },
-  // Social Media & Sharing (Social SEO / SXO)
+  // Social SEO (OpenGraph)
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: "https://www.padumainduwara.me",
-    title: "Paduma Induwara | Innovator & Developer",
-    description: "Building immersive 3D web experiences and intelligent AI data solutions. The official portfolio of Paduma Induwara.",
+    title: "Paduma Induwara | Top-Tier Software Engineer & AI Expert",
+    description: "Building immersive 3D web experiences and intelligent AI solutions. Discover the work of Sri Lanka's leading tech innovator.",
     siteName: "Paduma Induwara",
     images: [
       {
-        url: "/Paduma-Induwara-Profile.png", // Ensure this is high res
+        url: "/Paduma-Induwara-Profile.png",
         width: 1200,
         height: 630,
         alt: "Paduma Induwara - AI & Software Engineer Sri Lanka",
@@ -128,10 +131,8 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  // Search Engine Verification
   verification: {
     google: "L4JwVtm-MNV4dOIOoB23EYrX49y9xQM6bcKXdTdzAMA",
-    // Add Bing/Yandex codes here if you have them for broader coverage
   },
   category: 'technology',
 };
@@ -142,8 +143,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  // --- AEO & SGE SCHEMA (The "Secret Sauce" for AI & Knowledge Graph) ---
-  // This helps Google Gemini, ChatGPT, and SGE understand WHO you are.
+  // --- AEO, SGE & KNOWLEDGE GRAPH SCHEMA (The Secret Sauce) ---
+  // Meka nisa thamai Google oyawa 'Entity' ekak widiyata ganne.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -170,7 +171,7 @@ export default function RootLayout({
           "https://www.facebook.com/padumainduwara",
           "https://www.padumainduwara.me"
         ],
-        "jobTitle": ["Software Engineer", "Data Scientist", "AI Engineer", "Full Stack Developer"],
+        "jobTitle": ["Software Engineer", "Data Scientist", "AI Engineer", "Full Stack Developer", "Tech Innovator"],
         "worksFor": {
           "@type": "Organization",
           "name": "Freelance / Open for Work"
@@ -185,16 +186,16 @@ export default function RootLayout({
           "@type": "Country",
           "name": "Sri Lanka"
         },
-        // E-E-A-T: Demonstrating Expertise & Authority
         "knowsAbout": [
-          { "@type": "Thing", "name": "Software Engineering" },
-          { "@type": "Thing", "name": "Artificial Intelligence" },
-          { "@type": "Thing", "name": "Machine Learning" },
-          { "@type": "Thing", "name": "Next.js" },
-          { "@type": "Thing", "name": "React" },
-          { "@type": "Thing", "name": "Three.js" },
-          { "@type": "Thing", "name": "Data Science" },
-          { "@type": "Thing", "name": "Cloud Computing" }
+          "Software Engineering",
+          "Artificial Intelligence",
+          "Machine Learning",
+          "Next.js",
+          "React",
+          "Three.js",
+          "Data Science",
+          "Cloud Computing",
+          "SEO Optimization"
         ],
         "description": "Paduma Induwara is a visionary Software Engineer and Data Scientist from Sri Lanka, creating next-gen web applications and AI solutions."
       },
@@ -250,7 +251,56 @@ export default function RootLayout({
           ],
           "opens": "00:00",
           "closes": "23:59"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Software Development Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Web Development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "AI & Machine Learning Solutions"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "3D Web Experiences"
+              }
+            }
+          ]
         }
+      },
+      // FAQ Schema for AEO (Voice Search & AI Answers)
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Who is Paduma Induwara?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Paduma Induwara is a highly skilled Software Engineer and Data Scientist based in Sri Lanka, specializing in Next.js, AI, and 3D web technologies."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What services does Paduma Induwara offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "He offers Full Stack Web Development, AI/ML Model Integration, 3D Web Design, and Cloud Solutions."
+            }
+          }
+        ]
       }
     ]
   };

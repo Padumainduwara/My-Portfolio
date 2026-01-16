@@ -9,6 +9,7 @@ export default function manifest(): MetadataRoute.Manifest {
     display: 'standalone',
     background_color: '#020010',
     theme_color: '#020010',
+    orientation: 'portrait',
     icons: [
       {
         src: '/favicon.ico',
@@ -19,11 +20,13 @@ export default function manifest(): MetadataRoute.Manifest {
         src: '/Paduma-Induwara-Profile.png',
         sizes: '192x192',
         type: 'image/png',
+        purpose: 'maskable'
       },
       {
         src: '/Paduma-Induwara-Profile.png',
         sizes: '512x512',
         type: 'image/png',
+        purpose: 'maskable'
       },
     ],
   };

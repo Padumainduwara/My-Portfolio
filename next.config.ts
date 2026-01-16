@@ -1,23 +1,32 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Performance Optimization
+  compress: true, 
+  reactStrictMode: true,
+  poweredByHeader: false, // Security: Hide Next.js branding
+
   // Image Optimization for Visual Search SEO
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'github.com', // Github images allow karanna
+        hostname: 'github.com', 
       },
       {
         protocol: 'https',
-        hostname: 'grainy-gradients.vercel.app', // Background patterns
+        hostname: 'grainy-gradients.vercel.app', 
       },
-      // Thawa images ena domains methanata add karanna
+      {
+        protocol: 'https',
+        hostname: 'media.licdn.com', 
+      }
     ],
     dangerouslyAllowSVG: true,
   },
 
-  // Security Headers for Negative SEO Defense & XEO
+  // Security Headers for Negative SEO Defense & Trust
   async headers() {
     return [
       {
@@ -25,7 +34,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'DENY', // Wena sites wala oyage site eka pennanna ba (Security)
+            value: 'DENY', 
           },
           {
             key: 'X-Content-Type-Options',
@@ -37,8 +46,16 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()', // Privacy protection
+            value: 'camera=(), microphone=(), geolocation=()', 
           },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload' // HSTS for HTTPS trust
+          }
         ],
       },
     ];
