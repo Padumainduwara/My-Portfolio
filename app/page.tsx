@@ -8,33 +8,66 @@ import TechGrid from './components/sections/TechGrid';
 import Partners from './components/sections/Partners';
 import Reviews from './components/sections/Reviews';
 import Footer from './components/sections/Footer';
-import HostedProjects from './components/sections/HostedProjects'; // ඔබේ Featured Work එක
+import HostedProjects from './components/sections/HostedProjects'; 
 import GithubRepos from './components/sections/GithubRepos'; 
-import Contact from './components/sections/Contact';// <--- අලුත් එක මෙතනට
+import Contact from './components/sections/Contact';
 
 export default function Portfolio() {
   return (
     <main className="min-h-screen bg-[#050505] text-white selection:bg-purple-500/30 selection:text-white overflow-x-hidden font-sans">
       
-      {/* Dynamic Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
         <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[700px] h-[700px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse delay-1000" />
         <div className="absolute top-[40%] left-[40%] w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative z-10">
-        <section id="hero"><Hero /></section>
-        <SkillsMarquee />
-        <section id="experience"> <Experience /> </section>
-        <section id="projects"> <HostedProjects /> <GithubRepos /> </section>
-        <Education />
-        <section id="services"> <Services /> </section>
-        <Certifications />
-        <TechGrid />
-        <Partners />
-        <Reviews />
-        <Contact />
+        {/* Semantic Section Tags are crucial for SEO */}
+        <header id="hero"><Hero /></header>
+        
+        <section id="skills" aria-label="Skills Marquee">
+          <SkillsMarquee />
+        </section>
+
+        <section id="experience" aria-label="Work Experience"> 
+          <Experience /> 
+        </section>
+
+        <section id="projects" aria-label="Projects and Github Repositories"> 
+          <HostedProjects /> 
+          <GithubRepos /> 
+        </section>
+
+        <section id="education" aria-label="Education">
+          <Education />
+        </section>
+        
+        <section id="services" aria-label="Services Offered"> 
+          <Services /> 
+        </section>
+        
+        <section id="certifications" aria-label="Certifications">
+          <Certifications />
+        </section>
+        
+        <section id="tech-stack" aria-label="Technology Stack">
+          <TechGrid />
+        </section>
+        
+        <section id="partners" aria-label="Trusted Partners">
+          <Partners />
+        </section>
+        
+        <section id="reviews" aria-label="Client Reviews">
+          <Reviews />
+        </section>
+        
+        <section id="contact" aria-label="Contact Me">
+          <Contact />
+        </section>
+
         <Footer />
       </div>
     </main>

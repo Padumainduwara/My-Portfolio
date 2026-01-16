@@ -187,7 +187,7 @@ export default function Hero() {
                 {/* Image Container */}
                 <div className="relative w-full h-full"> 
                    <Image 
-                     src="/Profile_Pic2.png" 
+                     src="/Paduma-Induwara-Profile.png" 
                      alt="Paduma Induwara" 
                      fill
                      className="object-cover object-top opacity-85 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
