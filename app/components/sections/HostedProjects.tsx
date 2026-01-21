@@ -24,11 +24,12 @@ const projects = [
     url: "https://axiorablogs.com",
     category: "Blog / Content",
     desc: "A modern blogging platform for tech insights.",
-    color: "from-purple-500 to-pink-500"
+    color: "from-purple-500 to-pink-500",
+    image: "/projects/axiora-preview.png" // කලින් කතා කරගත්තු screenshot path එක
   },
   {
     title: "Madhara Service Center",
-    url: "https://madhara-services.vercel.app",
+    url: "https://madharaservices.com",
     category: "Business Service",
     desc: "Digital presence for service center operations.",
     color: "from-orange-500 to-red-500"
@@ -41,39 +42,11 @@ const projects = [
     color: "from-violet-600 to-fuchsia-600"
   },
   {
-    title: "Doc Do Online Channeling",
-    url: "https://doc-do-clinic-app.vercel.app",
-    category: "Healthcare",
-    desc: "Seamless doctor channeling and appointment system.",
-    color: "from-teal-400 to-blue-500"
-  },
-  {
     title: "Build With Videos",
     url: "https://buildwithvideos.com",
     category: "Service Platform",
     desc: "Platform for real-time construction updates.",
     color: "from-amber-500 to-yellow-500"
-  },
-  {
-    title: "St. Joseph's Girls School",
-    url: "https://st-josephs-rho.vercel.app",
-    category: "Educational Institute",
-    desc: "Official website for St. Joseph's Girls School.",
-    color: "from-pink-500 to-rose-500"
-  },
-  {
-    title: "St. John's College Official",
-    url: "https://stjohnscollege.lk",
-    category: "Educational Institute",
-    desc: "The digital face of St. John's College.",
-    color: "from-yellow-500 to-orange-500"
-  },
-  {
-    title: "St. Joseph's College Nugegoda",
-    url: "https://stjosephscollegenugegoda.lk",
-    category: "Educational Institute",
-    desc: "Official web portal for St. Joseph's College.",
-    color: "from-blue-600 to-indigo-600"
   },
   {
     title: "Nexentia JICTS",
@@ -88,6 +61,48 @@ const projects = [
     category: "Corporate",
     desc: "Modern landing page for networking solutions.",
     color: "from-gray-200 to-gray-400"
+  },
+  {
+    title: "St. Joseph's Girls School",
+    url: "https://stjosephsgirlsschool.com",
+    category: "Educational Institute",
+    desc: "Official website for St. Joseph's Girls School.",
+    color: "from-pink-500 to-rose-500"
+  },
+    {
+    title: "ICT with Sandani",
+    url: "https://ictwithsandani.com",
+    category: "Education / Portfolio",
+    desc: "Official educational portal and professional portfolio for ICT education.",
+    color: "from-emerald-400 to-teal-600"
+  },
+  {
+    title: "Inova LK",
+    url: "https://inova-lk.vercel.app",
+    category: "Tech Innovation",
+    desc: "A next-generation platform delivering innovative digital solutions.",
+    color: "from-cyan-500 to-blue-500" 
+  },
+  {
+    title: "Doc Do Online Channeling",
+    url: "https://doc-do-clinic-app.vercel.app",
+    category: "Healthcare",
+    desc: "Seamless doctor channeling and appointment system.",
+    color: "from-teal-400 to-blue-500"
+  },
+  {
+    title: "St. John's College Official",
+    url: "https://stjohnscollege.lk",
+    category: "Educational Institute",
+    desc: "The digital face of St. John's College.",
+    color: "from-yellow-500 to-orange-500"
+  },
+  {
+    title: "St. Joseph's College Nugegoda",
+    url: "https://stjosephscollegenugegoda.lk",
+    category: "Educational Institute",
+    desc: "Official web portal for St. Joseph's College.",
+    color: "from-blue-600 to-indigo-600"
   },
   {
     title: "QR Code Generator",
@@ -119,7 +134,7 @@ const projects = [
   },
   {
     title: "Your Guided Journey to Islam",
-    url: "https://think-like-a-muslim-axiora.vercel.app",
+    url: "https://eternalilm.org",
     category: "Educational / Religious",
     desc: "An interactive guide and educational platform.",
     color: "from-emerald-500 to-green-500"
