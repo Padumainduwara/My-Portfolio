@@ -169,7 +169,7 @@ export default function Contact() {
                     value={formState.message}
                     onChange={(e) => setFormState({...formState, message: e.target.value})}
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-purple-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-gray-600 resize-none text-sm md:text-base"
-                    placeholder="Tell me about your project..."
+                    placeholder="Tell me about your project."
                   />
                 </div>
 
