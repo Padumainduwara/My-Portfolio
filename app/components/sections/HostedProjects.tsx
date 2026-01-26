@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Globe, ArrowUpRight, Zap, ChevronDown, Loader2 } from 'lucide-react';
 
@@ -25,7 +25,7 @@ const projects = [
     category: "Blog / Content",
     desc: "A modern blogging platform for tech insights.",
     color: "from-purple-500 to-pink-500",
-    image: "/projects/axiora-preview.png" // කලින් කතා කරගත්තු screenshot path එක
+    image: "/projects/axiora-preview.png"
   },
   {
     title: "Madhara Service Center",
@@ -69,7 +69,7 @@ const projects = [
     desc: "Official website for St. Joseph's Girls School.",
     color: "from-pink-500 to-rose-500"
   },
-    {
+  {
     title: "ICT with Sandani",
     url: "https://ictwithsandani.com",
     category: "Education / Portfolio",
@@ -103,6 +103,13 @@ const projects = [
     category: "Educational Institute",
     desc: "Official web portal for St. Joseph's College.",
     color: "from-blue-600 to-indigo-600"
+  },
+  {
+    title: "Arabian Gig",
+    url: "https://arabiangig.vercel.app/",
+    category: "Travel & Tourism",
+    desc: "A premier travel platform specializing in tailor-made luxury vacations and immersive experiences.",
+    color: "from-teal-400 to-emerald-500"
   },
   {
     title: "QR Code Generator",
@@ -148,14 +155,31 @@ const projects = [
   },
 ];
 
-// --- SMART COMPONENT FOR OPTIMIZED LOADING (UNCHANGED) ---
-const ProjectCard = ({ project, index }: { project: any, index: number }) => {
-    // 1. Detect if the card is on the screen
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" }); // Only load when 100px into view
+// --- SMART COMPONENT: SEQUENTIAL LOADER ---
+const ProjectCard = ({ project, index, canLoad, onReady }: { project: any, index: number, canLoad: boolean, onReady: () => void }) => {
     
-    // 2. State to track if the iframe has finished loading
+    // 1. Detect visibility
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "0px 0px 50px 0px" });
+    
+    // 2. State for iframe load
     const [iframeLoaded, setIframeLoaded] = useState(false);
+    
+    // 3. Fallback Timer (5s timeout)
+    useEffect(() => {
+        if (canLoad && isInView && !iframeLoaded) {
+            const timer = setTimeout(() => {
+                onReady(); 
+            }, 3000); 
+            return () => clearTimeout(timer);
+        }
+    }, [canLoad, isInView, iframeLoaded, onReady]);
+
+    // 4. Handle actual load event
+    const handleLoad = () => {
+        setIframeLoaded(true);
+        onReady();
+    };
 
     return (
         <motion.a
@@ -184,9 +208,10 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                 </div>
 
                 {/* --- SMART PREVIEW AREA --- */}
+                {/* FIX: Increased Height to h-52 or h-56 for better mobile aspect ratio if needed, keeping h-48 for consistency */}
                 <div className="relative h-48 w-full bg-[#0c0c0c] overflow-hidden group-hover:bg-[#111] transition-colors">
                     
-                    {/* LAYER 1: The "Skeleton" / Placeholder */}
+                    {/* Placeholder Gradient */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10`} />
                     
                     {!iframeLoaded && (
@@ -196,30 +221,52 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                         </div>
                     )}
 
-                    {/* LAYER 2: The Live Iframe */}
-                    {isInView && (
-                        <div className={`absolute inset-0 w-[1280px] h-[768px] origin-top-left scale-[0.28] sm:scale-[0.35] md:scale-[0.25] lg:scale-[0.3] xl:scale-[0.33] transition-opacity duration-700 pointer-events-none ${iframeLoaded ? 'opacity-100' : 'opacity-0'}`}>
+                    {/* --- RESPONSIVE IFRAME FIX --- 
+                       Logic: 
+                       1. Fixed width 1280px (Desktop view).
+                       2. Scales adjusted per breakpoint to fit the container perfectly.
+                       3. 'origin-top-left' ensures it sticks to the corner.
+                    */}
+                    {isInView && canLoad && (
+                        <div 
+                           className={`
+                             absolute top-0 left-0 
+                             w-[1280px] h-[800px] 
+                             origin-top-left 
+                             transition-opacity duration-700 pointer-events-none 
+                             
+                             scale-[0.24] 
+                             xs:scale-[0.28] 
+                             sm:scale-[0.38] 
+                             md:scale-[0.23] 
+                             lg:scale-[0.28] 
+                             xl:scale-[0.32] 
+                             
+                             ${iframeLoaded ? 'opacity-100' : 'opacity-0'}
+                           `}
+                        >
                             <iframe 
                                 src={project.url} 
                                 title={`${project.title} Live Preview`}
                                 className="w-full h-full border-0"
                                 loading="lazy"
-                                onLoad={() => setIframeLoaded(true)}
+                                scrolling="no" // Prevents double scrollbars
+                                onLoad={handleLoad}
                                 tabIndex={-1}
                             />
                         </div>
                     )}
 
-                    {/* Overlays for Interaction & Design */}
+                    {/* Overlays */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10 mix-blend-overlay group-hover:opacity-20 transition-all duration-500 z-20 pointer-events-none`} />
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-500 z-20 pointer-events-none" />
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay z-20 pointer-events-none" />
 
-                    {/* "Live" Badge */}
+                    {/* Status Badge */}
                     <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-1.5 z-30">
                          <span className={`w-1.5 h-1.5 rounded-full ${iframeLoaded ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'}`} />
                          <span className="text-[10px] font-bold text-white tracking-wide uppercase">
-                             {iframeLoaded ? 'Live View' : 'Connecting'}
+                             {iframeLoaded ? 'Live' : 'Queue'}
                          </span>
                     </div>
                 </div>
@@ -259,6 +306,17 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
 export default function HostedProjects() {
   const [showAll, setShowAll] = useState(false);
   const displayedProjects = showAll ? projects : projects.slice(0, 9);
+  
+  // --- QUEUE SYSTEM STATE ---
+  const [maxAllowedIndex, setMaxAllowedIndex] = useState(2); // Start with 3 items
+
+  // Unlock next item when current one finishes
+  const handleItemReady = useCallback((index: number) => {
+      setMaxAllowedIndex(prev => {
+          if (index >= prev) return prev + 1;
+          return prev;
+      });
+  }, []);
 
   return (
     <section className="py-32 relative z-10 overflow-hidden">
@@ -290,7 +348,7 @@ export default function HostedProjects() {
             A curated collection of live websites and applications I've engineered and deployed.
           </p>
           
-          {/* Total Deployments Badge - MOVED HERE AS REQUESTED */}
+          {/* Total Deployments Badge */}
           <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent">
             <div className="px-6 py-2 rounded-full bg-[#050505] text-sm text-gray-500 border border-white/5">
               Total Live Deployments: <span className="text-white font-bold">{projects.length}</span>
@@ -301,7 +359,13 @@ export default function HostedProjects() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedProjects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
+            <ProjectCard 
+                key={index} 
+                project={project} 
+                index={index}
+                canLoad={index <= maxAllowedIndex}
+                onReady={() => handleItemReady(index)}
+            />
           ))}
         </div>
 

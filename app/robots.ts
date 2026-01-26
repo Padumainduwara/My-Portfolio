@@ -14,5 +14,6 @@ export default function robots(): MetadataRoute.Robots {
       }
     ],
     sitemap: 'https://www.padumainduwara.me/sitemap.xml',
+    host: 'https://www.padumainduwara.me',
   };
 }
