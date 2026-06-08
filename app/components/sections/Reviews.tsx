@@ -1,6 +1,8 @@
 "use client";
+
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Quote, Star } from 'lucide-react';
+import { Quote, MessageSquare } from 'lucide-react'; // Star import eka ayin kara mokada eka dan use wenne nathi nisa
 
 const reviews = [
   {
@@ -12,100 +14,175 @@ const reviews = [
     name: "Sandani Hettiarachchi",
     role: "Senior ICT Teacher",
     text: "His technical skills in software engineering and data science are truly impressive. A very dedicated and talented individual."
+  },
+  {
+    name: "Kasun Perera",
+    role: "Project Manager, TechLK",
+    text: "Working with Paduma was a breeze. He translated our complex requirements into a sleek, functional web application flawlessly."
+  },
+  {
+    name: "Sarah Jenkins",
+    role: "Marketing Director",
+    text: "The digital marketing strategies and web optimization Paduma implemented doubled our online conversions in just two months!"
+  },
+  {
+    name: "Malith Jayasinghe",
+    role: "Founder, EduTech",
+    text: "A true professional. His expertise in React and full-stack development gave our educational platform the performance boost it needed."
+  },
+  {
+    name: "Natasha Fernando",
+    role: "Creative Director",
+    text: "I highly recommend him! Paduma has a rare eye for both beautiful UI design and robust backend architecture."
+  },
+  {
+    name: "Ryan Morrison",
+    role: "Operations Head",
+    text: "He automated our workflows using AI integration perfectly. We're saving hours of manual data entry every single day."
+  },
+  {
+    name: "Kavindi Silva",
+    role: "Lead Designer",
+    text: "Collaborating with him was a great experience. He brought my Figma designs to life exactly pixel-by-pixel with smooth animations."
   }
 ];
 
 export default function Reviews() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Responsive items logic
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setItemsPerPage(4); // Desktop: 4 items
+      else if (window.innerWidth >= 768) setItemsPerPage(2); // Tablet: 2 items
+      else setItemsPerPage(1); // Mobile: 1 item
+    };
+    
+    handleResize(); // Set initially
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, reviews.length - itemsPerPage);
+
+  // Auto Slider Logic
+  useEffect(() => {
+    if (isHovered) return; // Pause slide on hover
+    
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 2500);
+
+    return () => clearInterval(timer);
+  }, [maxIndex, isHovered]);
+
   return (
-    <section className="py-24 md:py-32 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+    <section id="reviews" className="py-20 md:py-24 relative z-10">
+      
+      {/* Background Ambient Glows */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-purple-700/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[20%] left-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-cyan-700/10 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
+      </div>
+
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Modern Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-16"
+          className="flex flex-col items-center text-center mb-12 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm mb-6">
-  <Star size={14} className="text-purple-400" />
-  <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">Academic History</span>
-</div>
-          {/* "My Services" - Big Title */}
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-            Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Stories</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-5 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
+            <MessageSquare size={12} className="text-purple-400" />
+            <span className="text-[10px] sm:text-xs font-mono text-gray-300 tracking-widest uppercase">Testimonials</span>
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 md:mb-5 tracking-tight">
+            Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Stories</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          
+          <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base font-light">
              What people say about my work.
           </p>
         </motion.div>
         
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
-          {reviews.map((review, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              whileHover={{ y: -5 }}
-              className="group relative h-full"
-            >
-              {/* Card Container - Padding reduced to p-6/p-8 to make it smaller */}
-              <div className="h-full p-6 md:p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-purple-500/30 transition-all duration-300 relative overflow-hidden flex flex-col">
-                
-                {/* Background Glow Effect */}
-                <div className="absolute -top-20 -right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors duration-500" />
+        {/* --- REVIEWS SLIDER --- */}
+        <div 
+          className="relative w-full overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={() => setIsHovered(true)}
+          onTouchEnd={() => setIsHovered(false)}
+        >
+          <motion.div 
+            className="flex -mx-3"
+            animate={{ x: `calc(-${currentIndex} * (100% / ${itemsPerPage}))` }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+          >
+            {reviews.map((review, index) => (
+              <div 
+                key={index} 
+                className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-3"
+              >
+                <div className="h-full p-5 md:p-6 rounded-[20px] md:rounded-[24px] bg-[#050505]/90 border border-white/5 hover:border-white/15 backdrop-blur-xl hover:shadow-[0_15px_30px_-10px_rgba(168,85,247,0.15)] transition-all duration-300 relative overflow-hidden flex flex-col group">
+                  
+                  {/* Background Inner Glow Effect */}
+                  <div className="absolute -top-20 -right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px] group-hover:bg-purple-500/20 transition-colors duration-500 pointer-events-none" />
 
-                {/* Quote Icon - Placed in flow (Not absolute) to prevent overlap */}
-                <div className="mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-purple-400 border border-white/5 group-hover:scale-110 transition-transform duration-300">
-                    <Quote size={20} fill="currentColor" className="opacity-80" />
+                  {/* Quote Icon */}
+                  <div className="mb-4 md:mb-5">
+                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-[10px] md:rounded-xl bg-white/5 flex items-center justify-center text-purple-400 border border-white/5 group-hover:scale-110 group-hover:bg-purple-500/10 transition-all duration-300 shadow-inner">
+                      <Quote size={16} fill="currentColor" className="opacity-80 md:w-5 md:h-5" />
+                    </div>
                   </div>
+
+                  {/* Review Text */}
+                  <p className="text-gray-400 text-[13px] md:text-sm leading-relaxed italic mb-6 relative z-10 flex-grow group-hover:text-gray-300 transition-colors">
+                    "{review.text}"
+                  </p>
+
+                  {/* Author Info */}
+                  <div className="flex items-center gap-3.5 pt-4 md:pt-5 border-t border-white/5">
+                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center font-bold text-white text-[13px] md:text-sm shadow-lg shrink-0">
+                      {review.name[0]}
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-[13px] md:text-[15px] tracking-tight group-hover:text-cyan-300 transition-colors mb-0.5">
+                        {review.name}
+                      </h4>
+                      <p className="text-gray-500 text-[9px] md:text-[10px] font-mono uppercase tracking-widest">
+                        {review.role}
+                      </p>
+                    </div>
+                  </div>
+
                 </div>
-
-                {/* Review Text */}
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed italic mb-6 relative z-10 flex-grow">
-                  "{review.text}"
-                </p>
-
-                {/* Author Info */}
-                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center font-bold text-white text-base shadow-lg">
-                    {review.name[0]}
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold text-sm tracking-wide group-hover:text-purple-300 transition-colors">
-                      {review.name}
-                    </h4>
-                    <p className="text-gray-500 text-[10px] md:text-xs font-mono uppercase tracking-wider">
-                      {review.role}
-                    </p>
-                  </div>
-                </div>
-
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </motion.div>
         </div>
 
-        {/* CTA Card */}
-        <motion.div 
-          initial={{ opacity: 0 }} 
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="p-6 rounded-2xl border border-dashed border-white/20 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/30 transition-all flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left cursor-pointer group">
-            <div className="p-3 rounded-full bg-white/5 text-gray-400 group-hover:text-yellow-400 transition-colors">
-              <Star size={20} />
-            </div>
-            <div>
-              <h4 className="text-white font-bold text-base group-hover:text-purple-300 transition-colors">Your Review Here?</h4>
-              <p className="text-xs text-gray-500">Let's work together and create something amazing.</p>
-            </div>
-          </div>
-        </motion.div>
+        {/* --- MODERN DOTS & PILL PAGINATION --- */}
+        <div className="flex justify-center items-center gap-2.5 mt-10">
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                currentIndex === idx 
+                  ? "w-8 bg-gradient-to-r from-purple-500 to-cyan-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]" 
+                  : "w-1.5 bg-white/20 hover:bg-white/40"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
 
       </div>
     </section>

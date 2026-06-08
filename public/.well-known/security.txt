@@ -1,0 +1,9 @@
+Contact: mailto:info@padumainduwara.me
+Contact: https://www.padumainduwara.me/#contact
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://www.padumainduwara.me/.well-known/security.txt
+Policy: https://www.padumainduwara.me/security-policy
+Encryption: https://www.padumainduwara.me/pgp-key.txt
+Acknowledgments: https://www.padumainduwara.me/security-acknowledgments
+Hiring: https://www.padumainduwara.me/#contact

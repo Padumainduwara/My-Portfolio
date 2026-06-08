@@ -1,34 +1,41 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Paduma Induwara | Software Engineer & AI Expert',
-    short_name: 'Paduma Induwara',
-    description: 'Portfolio of Paduma Induwara - Top-tier Software Engineer & Data Scientist in Sri Lanka. Expert in AI and Web Development.',
+    name: 'Paduma Induwara | AI Expert, Data Scientist & Software Engineer',
+    short_name: 'Paduma.Dev',
+    description:
+      'World-class Software Engineer & Data Scientist specializing in AI, Machine Learning, Next.js, and immersive 3D Web Development.',
     start_url: '/',
     display: 'standalone',
     background_color: '#020010',
     theme_color: '#020010',
-    orientation: 'portrait',
-    categories: ["technology", "software development", "artificial intelligence", "education"],
+    orientation: 'portrait-primary',
+    scope: '/',
+    lang: 'en',
+    dir: 'ltr',
+    categories: ['technology', 'software', 'development', 'portfolio', 'business'],
     icons: [
       {
         src: '/favicon.ico',
-        sizes: 'any',
+        sizes: '48x48',
         type: 'image/x-icon',
       },
       {
-        src: '/Paduma-Induwara-Profile.png',
-        sizes: '192x192',
+        src: '/apple-touch-icon.png',
+        sizes: '180x180',
         type: 'image/png',
-        purpose: 'maskable'
-      },
-      {
-        src: '/Paduma-Induwara-Profile.png',
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: 'maskable'
       },
     ],
+    screenshots: [
+      {
+        src: '/Paduma-Induwara-Profile.png',
+        sizes: '1200x630',
+        type: 'image/png',
+        form_factor: 'wide',
+        label: 'Paduma Induwara Portfolio',
+      },
+    ],
+    prefer_related_applications: false,
   };
 }

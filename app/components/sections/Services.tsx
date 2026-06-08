@@ -1,116 +1,183 @@
 "use client";
+
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Bot, Rocket, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Code2, Bot, Rocket, Cpu, Search, Palette } from 'lucide-react';
 
 const services = [
   {
-    title: "Custom Software Development",
-    desc: "Building scalable, high-performance web and mobile applications tailored to your specific business needs using cutting-edge technologies.",
+    title: "Modern Web Development",
+    desc: "Crafting blazing-fast, responsive web applications using Next.js, React, and server-side architecture for next-gen performance.",
     icon: Code2,
-    gradient: "from-cyan-400 via-blue-500 to-purple-600",
-    iconColor: "text-cyan-400",
-    shadow: "shadow-[0_0_50px_-12px_rgba(34,211,238,0.2)]"
+    color: "from-cyan-500 to-blue-600",
+    glow: "shadow-cyan-500/20",
+    bgGlow: "group-hover:bg-cyan-500/10"
+  },
+  {
+    title: "Custom Software Solutions",
+    desc: "Scalable enterprise-grade software engineered for precision, security, and high-load business environments.",
+    icon: Cpu,
+    color: "from-purple-500 to-fuchsia-600",
+    glow: "shadow-purple-500/20",
+    bgGlow: "group-hover:bg-purple-500/10"
+  },
+  {
+    title: "Search Engine Optimization",
+    desc: "AI-driven SEO strategies that dominate search rankings and drive organic growth through data-backed content architecture.",
+    icon: Search,
+    color: "from-emerald-400 to-teal-500",
+    glow: "shadow-emerald-500/20",
+    bgGlow: "group-hover:bg-emerald-500/10"
   },
   {
     title: "AI & Automation Integration",
-    desc: "Empowering your business with intelligent automation, machine learning models, and data-driven insights to optimize workflows.",
+    desc: "Harnessing LLMs and autonomous agents to automate complex business workflows, saving time and increasing operational ROI.",
     icon: Bot,
-    gradient: "from-fuchsia-500 via-purple-500 to-indigo-500",
-    iconColor: "text-fuchsia-400",
-    shadow: "shadow-[0_0_50px_-12px_rgba(217,70,239,0.2)]"
+    color: "from-orange-400 to-red-500",
+    glow: "shadow-orange-500/20",
+    bgGlow: "group-hover:bg-orange-500/10"
   },
   {
     title: "Digital Marketing & Branding",
-    desc: "Elevating your brand presence through strategic digital marketing campaigns, SEO optimization, and compelling visual identity.",
-    icon: Rocket,
-    gradient: "from-orange-400 via-red-500 to-rose-600",
-    iconColor: "text-orange-400",
-    shadow: "shadow-[0_0_50px_-12px_rgba(251,146,60,0.2)]"
+    desc: "Crafting compelling visual identities and high-conversion marketing campaigns that resonate with modern audiences.",
+    icon: Palette,
+    color: "from-pink-500 to-rose-500",
+    glow: "shadow-pink-500/20",
+    bgGlow: "group-hover:bg-pink-500/10"
   }
 ];
 
 export default function Services() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <section className="py-32 relative z-10 overflow-hidden">
-      
-      {/* --- Background Ambient Glow --- */}
+    <section id="services" className="py-20 md:py-24 relative z-10">
+
+      {/* Background Ambient Glows */}
       <div className="absolute inset-0 pointer-events-none">
-         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-900/20 rounded-full blur-[120px] opacity-40" />
-         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
+        <div className="absolute top-[10%] left-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-purple-700/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-cyan-700/10 rounded-full blur-[150px]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Modern Header */}
+        {/* --- MODERN HEADER --- */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-16"
+          className="flex flex-col items-center text-center mb-10 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm mb-6">
-  <Sparkles size={14} className="text-purple-400" />
-  <span className="text-xs font-mono text-gray-300 tracking-widest uppercase">What I Offer</span>
-</div>
-          {/* "My Services" - Big Title */}
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Services</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-4 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
+            <Rocket size={12} className="text-purple-400" />
+            <span className="text-[10px] sm:text-xs font-mono text-gray-300 tracking-widest uppercase">My Capabilities</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">
+            Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Services</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Comprehensive technical solutions tailored to elevate your business.
+          <p className="text-gray-400 max-w-2xl mx-auto text-[13px] md:text-sm font-light">
+             I don't just write code. I build scalable digital experiences that solve real business problems.
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-              className="h-full"
-            >
-              {/* --- HOLOGRAPHIC GLASS CARD --- */}
-              <div className={`group relative h-full p-[1px] rounded-[2rem] bg-gradient-to-b from-white/10 via-white/5 to-transparent hover:via-white/10 transition-all duration-500 ${service.shadow}`}>
-                
-                {/* Card Content */}
-                <div className="relative h-full bg-[#050505]/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-10 flex flex-col overflow-hidden border border-white/5 group-hover:border-white/10 transition-all duration-300">
-                  
-                  {/* Top Right Gradient Splash */}
-                  <div className={`absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br ${service.gradient} opacity-10 blur-[70px] group-hover:opacity-25 transition-opacity duration-500 rounded-full`} />
-                  
-                  {/* Icon */}
-                  <div className="mb-8 relative">
-                    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:scale-110 transition-transform duration-500 shadow-inner">
-                      <service.icon size={32} className={`${service.iconColor} drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]`} />
+        {/* --- RESPONSIVE MATRIX --- */}
+        <div className="flex flex-col lg:flex-row items-start relative w-full">
+          
+          {/* LEFT: Sticky Glass Showcase (ONLY VISIBLE ON DESKTOP - lg:flex) */}
+          <div className="hidden lg:flex w-1/2 sticky top-[20vh] h-[60vh] items-center justify-center z-20">
+            <div className="relative w-full max-w-[400px] aspect-square rounded-[40px] border border-white/10 bg-[#050505]/60 backdrop-blur-2xl shadow-2xl overflow-hidden flex items-center justify-center transition-all duration-500">
+              
+              {/* ALUTHIN ADD KARAPU: Hardware-Accelerated Cyber Grid Background */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
+
+              {services.map((service, index) => {
+                const isActive = activeIndex === index;
+                return (
+                  <motion.div
+                    key={index}
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    initial={false}
+                    animate={{
+                      opacity: isActive ? 1 : 0,
+                      scale: isActive ? 1 : 0.8,
+                    }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} 
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-[0.15] blur-3xl`} />
+                    
+                    {/* ALUTHIN ADD KARAPU: The 3D Quantum Orbit Rings (Adjusted sizes to fit nicely) */}
+                    {isActive && (
+                      <>
+                        <div className="absolute w-[180px] h-[180px] md:w-[220px] md:h-[220px] rounded-full border border-white/5 border-t-white/20 animate-[spin_8s_linear_infinite]" />
+                        <div className="absolute w-[220px] h-[220px] md:w-[260px] md:h-[260px] rounded-full border border-white/5 border-b-cyan-500/20 animate-[spin_12s_linear_infinite_reverse]" />
+                      </>
+                    )}
+
+                    <div className={`relative flex items-center justify-center w-28 h-28 rounded-[24px] bg-white/5 border border-white/10 shadow-xl transition-all duration-500 ${isActive ? service.glow : ''} z-10`}>
+                      <service.icon size={48} className={`text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]`} strokeWidth={1.5} />
+                    </div>
+                  </motion.div>
+                );
+              })}
+              
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5 pointer-events-none rounded-[40px]" />
+            </div>
+          </div>
+
+          {/* RIGHT: Scrolling Content Details (Cards on Mobile, Text on Desktop) */}
+          <div className="w-full lg:w-1/2 flex flex-col gap-5 lg:gap-0 lg:pl-16 xl:pl-20 relative z-10">
+            {services.map((service, index) => {
+              const isActive = activeIndex === index;
+              return (
+                <motion.div
+                  key={index}
+                  onViewportEnter={() => setActiveIndex(index)}
+                  viewport={{ margin: "-45% 0px -45% 0px", amount: "some" }}
+                  // MOBILE: Premium Cards | DESKTOP: Clean Text layout with standard heights
+                  className={`group relative flex flex-col lg:justify-center 
+                    p-6 sm:p-8 lg:p-0 
+                    rounded-[24px] lg:rounded-none 
+                    bg-[#050505]/80 lg:bg-transparent 
+                    border border-white/5 lg:border-transparent 
+                    backdrop-blur-xl lg:backdrop-blur-none
+                    lg:min-h-[50vh] transition-all duration-700 ease-in-out
+                    ${isActive ? "opacity-100 lg:scale-100" : "opacity-60 lg:opacity-30 lg:scale-[0.97]"}
+                    hover:border-white/10 lg:hover:border-transparent
+                  `}
+                >
+                  {/* MOBILE ICON (Hidden on Desktop) */}
+                  <div className={`lg:hidden w-14 h-14 mb-5 rounded-[16px] bg-gradient-to-br ${service.color} p-[1px] shadow-lg`}>
+                    <div className="w-full h-full bg-[#050505] rounded-[15px] flex items-center justify-center">
+                       <service.icon size={22} className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                     </div>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-colors">
-                    {service.title}
-                  </h3>
+                  <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                    <span className={`text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase transition-colors duration-700 ${isActive ? 'text-cyan-400' : 'text-gray-600'}`}>
+                      0{index + 1} //
+                    </span>
+                    <h3 className={`text-[17px] sm:text-xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight transition-colors duration-700 ${
+                      isActive ? "text-white" : "text-gray-400"
+                    }`}>
+                      {service.title}
+                    </h3>
+                  </div>
                   
-                  {/* Description */}
-                  <p className="text-gray-400 leading-relaxed mb-8 text-sm md:text-base font-light flex-grow opacity-80 group-hover:opacity-100 transition-opacity">
+                  <p className={`text-[13px] sm:text-[14px] lg:text-[15px] font-light leading-relaxed max-w-md transition-all duration-700 ${
+                    isActive ? "text-gray-300 lg:translate-y-0" : "text-gray-500 lg:translate-y-4"
+                  }`}>
                     {service.desc}
                   </p>
 
-                  {/* Bottom Action (ID Removed) */}
-                  <div className="flex items-center justify-end border-t border-white/5 pt-6 mt-auto">
-                    <div className="flex items-center gap-3 group/link cursor-pointer">
-                      <span className="text-sm font-bold text-white/40 group-hover/link:text-white transition-colors uppercase tracking-wider">Explore</span>
-                      <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 group-hover/link:bg-white group-hover/link:text-black transition-all duration-300 transform group-hover/link:-rotate-45">
-                        <ArrowUpRight size={18} />
-                      </div>
-                    </div>
-                  </div>
+                  {/* Subtle mobile card hover glow */}
+                  <div className={`absolute inset-0 rounded-[24px] pointer-events-none transition-colors duration-500 lg:hidden ${service.bgGlow}`} />
+                </motion.div>
+              );
+            })}
+          </div>
 
-                </div>
-              </div>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

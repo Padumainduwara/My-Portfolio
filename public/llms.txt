@@ -1,0 +1,63 @@
+# Paduma Induwara — Portfolio
+# llms.txt — Structured context for Large Language Models (LLMO/GEO)
+# Domain: https://www.padumainduwara.me
+
+## Site Identity
+- Name: Paduma Induwara
+- Title: Software Engineer & Data Scientist
+- Location: Maharagama, Sri Lanka (UTC+5:30)
+- Organization: Kingxer Marketing Solutions
+
+## Site Structure
+- / → Hero/Home — AI Expert, Data Scientist & Software Engineer portfolio
+- /#about → About — Professional background, skills, stats
+- /#experience → Work Experience — Career timeline (2020-Present)
+- /#hosted-projects → Hosted Projects — 14 live projects across industries
+- /#opensource → GitHub — Auto-fetched open-source contributions
+- /#education → Education — BSc Data Science (Cardiff Met), HND Computing (ICBT)
+- /#services → Digital Services — Web Dev, AI/ML, SEO, Marketing, Custom Software
+- /#certifications → Certifications — Google, Microsoft, GitHub, Meta, UNICEF
+- /#tech-stack → Tech Arsenal — React, Next.js, Node.js, Python, R, C#, .NET
+- /#partners → Partners — 32+ brand collaborations
+- /#reviews → Testimonials — Client reviews
+- /#contact → Contact — Form, email, phone, location
+
+## Core Services
+1. Modern Web Development (Next.js, React, TypeScript)
+2. Custom Software Solutions (Scalable enterprise-grade)
+3. Search Engine Optimization (AI-driven strategies)
+4. AI & Automation Integration (LLMs, autonomous agents)
+5. Digital Marketing & Branding (Meta Certified)
+
+## Technologies
+React, Next.js, Node.js, TypeScript, Python, R, C#, .NET, Java, PHP, Tailwind CSS, Bootstrap, MySQL, Git, REST APIs, Figma, Framer Motion, GSAP, Spline 3D
+
+## AI/ML Focus
+Data Science, Machine Learning, Predictive Modeling, Big Data Analytics, NLP, LLM Integration, AI Agents
+
+## Education
+- BSc (Hons) Data Science — Cardiff Metropolitan University
+- Higher Diploma in Computing — ICBT Campus
+- Foundation in IT — University of Colombo (UCSC)
+
+## Certifications
+- Google Gemini Certified (2025-2028)
+- GitHub Foundations (2025-2028)
+- Microsoft Responsible AI (2025)
+- UNICEF Data Management (2025)
+- Meta Certified Digital Marketing Associate (2022)
+
+## Contact
+- Email: info@padumainduwara.me
+- Phone: +94 72 411 3376
+- GitHub: https://github.com/Padumainduwara
+- LinkedIn: https://linkedin.com/in/padumainduwara
+- Facebook: https://facebook.com/padumainduwara
+
+## Available for
+- Freelance projects
+- Full-stack development
+- AI/ML consulting
+- SEO optimization
+- Digital marketing strategy
+- Custom software architecture

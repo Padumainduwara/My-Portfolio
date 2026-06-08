@@ -1,0 +1,20 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$
+
+# GPTBot
+User-agent: GPTBot
+Disallow: /
+
+# CCBot
+User-agent: CCBot
+Disallow: /
+
+# Host
+Host: https://www.padumainduwara.me
+
+# Sitemaps
+Sitemap: https://www.padumainduwara.me/sitemap.xml

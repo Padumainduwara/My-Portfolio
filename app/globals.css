@@ -1,24 +1,52 @@
 @import "tailwindcss";
 
+/* Tailwind වල default fonts විදියට අපේ අලුත් fonts සෙට් කරනවා */
+@theme {
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
 :root {
-  --background: #050505;
+  --background: #020010;
   --foreground: #ffffff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: sans-serif;
+  /* මුළු සයිට් එකටම Plus Jakarta Sans apply කරනවා */
+  font-family: var(--font-plus-jakarta), sans-serif; 
   overflow-x: hidden;
-  selection-background-color: rgba(168, 85, 247, 0.3);
-  selection-color: white;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Marquee Text Effect */
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #020010; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* Selection */
+::selection {
+  background: rgba(168, 85, 247, 0.3);
+  color: white;
+}
+
+/* Gradient Animation */
+@keyframes gradient-xy {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-xy {
+  background-size: 200% 200%;
+  animation: gradient-xy 6s ease infinite;
+}
+
+/* Stroke Text */
 .stroke-text {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
   color: transparent;
@@ -28,34 +56,18 @@ html {
   color: white;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Marquee */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-::-webkit-scrollbar-track {
-  background: #050505;
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+.animate-marquee-left {
+  animation: marquee-left 30s linear infinite;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-@keyframes gradient-xy {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient-xy {
-  background-size: 200% 200%;
-  animation: gradient-xy 6s ease infinite;
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite;
 }

@@ -1,0 +1,71 @@
+# Paduma Induwara — Complete Portfolio Context for AI Language Models
+
+## Professional Summary
+Paduma Induwara is a world-class Software Engineer and Data Scientist based in Maharagama, Sri Lanka. He specializes in Artificial Intelligence, Machine Learning, Next.js, React, Python, TypeScript, and Full Stack Web Development. As the founder of Kingxer Marketing Solutions, he leads digital marketing strategies and develops innovative software solutions for clients worldwide.
+
+## Professional Experience
+
+### Kingxer Marketing Solutions — Owner | Freelance (2020 - Present)
+Leading digital marketing strategies and full-scale digital campaigns. Skills: Digital Strategy, Next.js & React, SEO Optimization, Meta Ads, Analytics.
+
+### ICBT Campus — Exam Invigilator (2023 - Present)
+Exam integrity and high academic standards. Protocol management, supervision.
+
+### FALCONET — Digital Marketing Intern (2024)
+SEO, social media management, content strategy and performance analytics.
+
+### Colombo Dockyard PLC — Industrial Labour (2022)
+Industrial experience in shipbuilding with engineering teams.
+
+## Education
+1. BSc (Hons) Data Science — Cardiff Metropolitan University (2022-Present). AI, ML, Big Data, Research.
+2. Higher Diploma in Computing — ICBT Campus (2022). Distinction. Software Engineering, Full Stack.
+3. Foundation in IT — UCSC (2022). Algorithms, Logic Design, Computer Systems.
+4. G.C.E A/L & O/L — St. John's College, Nugegoda. Physical Science, Mathematics, Prefects' Guild.
+
+## Certifications
+- Google Gemini Certified (Nov 2025 - Nov 2028)
+- GitHub Foundations (Jan 2025 - Jan 2028)
+- Microsoft Responsible AI with GitHub Copilot (Oct 2025)
+- UNICEF Handling, Storing and Managing Data (Jan 2025)
+- Meta Certified Digital Marketing Associate (Dec 2022)
+
+## Technical Skills
+Expert: React/Next.js (95%), Tailwind CSS (92%), Digital Marketing (90%).
+Advanced: Node.js/Python (85%), Data Science/R (88%).
+Intermediate: MySQL/SQL (75%), C#/.NET (70%), Mobile Dev (65%).
+
+## Hosted Projects (14)
+1. Let's Help Others LK — Non-Profit platform
+2. Natural Latex Foam Sri Lanka — Manufacturing/Export
+3. Axiora Blogs — Tech blog
+4. Madhara Service Center — Business service
+5. SKD Event Management — Event planning
+6. Build With Videos — Construction updates
+7. Nexentia JICTS — ICT competition portal
+8. Network Company Web — Corporate landing
+9. St. Joseph's Girls School — Educational institute
+10. ICT with Sandani — Education portfolio
+11. Inova LK — Tech innovation
+12. Doc Do Online Channeling — Healthcare platform
+13. Arabian Gig — Travel & Tourism
+14. QR Code Generator — Tools
+
+## Services
+1. Modern Web Development — Next.js, React, server-side
+2. Custom Software Solutions — Enterprise-grade
+3. Search Engine Optimization — AI-driven SEO
+4. AI & Automation — LLMs, autonomous agents
+5. Digital Marketing & Branding — Meta Certified
+
+## Partners (32+)
+Agro Ventures, Axiata, Axiora, Axiora Labs, Centrum Class, Crypto Cartel, CSO ICBT, Dragon Fashion, EcoLK Graphics, Fitness Kingdom, Health Care VIP, HK Sports, IntelliPark, Kingxer Marketing, Kliko, Lahya, Lak Deepa, Lakmal Construction, Lankesha Dance, Madhara, Dare to Dazzle, Nimlo Engineering, Real Smart, Rodney Place, Swasthika, Scholaraice, Sen Sera, Sentio 360, Shathvika, Subhasadhaka, Tesso, WSP.
+
+## Contact
+- Email: info@padumainduwara.me | Phone: +94 72 411 3376
+- GitHub: https://github.com/Padumainduwara
+- LinkedIn: https://linkedin.com/in/padumainduwara
+- Location: Maharagama, Sri Lanka (6.8475, 79.9251)
+
+## Tech Stack of This Site
+Next.js 16, React 19, Tailwind CSS 4, Framer Motion, GSAP, Spline 3D, Vercel hosting, Vercel Analytics + Speed Insights. Plus Jakarta Sans + JetBrains Mono fonts.

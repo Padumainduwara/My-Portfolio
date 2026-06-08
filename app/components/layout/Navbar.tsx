@@ -1,16 +1,16 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, Github, Linkedin, Facebook } from "lucide-react"; // Updated Icons
+import { Menu, X, ArrowRight, Github, Linkedin, Facebook } from "lucide-react";
 import Link from "next/link";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
   { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
+  { name: "Projects", href: "#hosted-projects" },
   { name: "Services", href: "#services" },
 ];
+
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -64,18 +64,14 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* NEW "Contact Me" Button (Professional Style) */}
+          {/* Contact Button */}
           <div className="flex items-center gap-4">
-            <Link 
+            <Link
               href="#contact"
               className="hidden md:flex relative items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-bold text-sm overflow-hidden shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)] hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 group"
             >
-              {/* Button Content */}
               <span className="relative z-10">Let's Talk</span>
-              {/* Changed Icon to ArrowRight for Professional Look */}
               <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-              
-              {/* Shine Animation Effect */}
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             </Link>
 
@@ -90,7 +86,7 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu (Updated with Social Icons) */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -99,9 +95,8 @@ export default function Navbar() {
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             className="fixed inset-0 z-40 bg-[#020010]/95 md:hidden flex flex-col items-center justify-center overflow-y-auto"
           >
-            {/* Background Decoration */}
             <div className="absolute top-[-10%] right-[-10%] w-60 h-60 bg-purple-600/20 rounded-full blur-[80px] pointer-events-none" />
-            
+
             <div className="flex flex-col gap-8 text-center w-full px-6 relative z-10">
               {navLinks.map((link, index) => (
                 <motion.a
@@ -116,19 +111,18 @@ export default function Navbar() {
                   {link.name}
                 </motion.a>
               ))}
-              
+
               <motion.a
-                  href="#contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="flex items-center justify-center gap-2 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400"
-                >
-                  Let's Talk <ArrowRight size={28} className="text-cyan-400" />
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex items-center justify-center gap-2 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400"
+              >
+                Let's Talk <ArrowRight size={28} className="text-cyan-400" />
               </motion.a>
 
-              {/* Social Icons Section (Restored) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -136,13 +130,13 @@ export default function Navbar() {
                 className="flex gap-6 justify-center mt-8 pt-8 border-t border-white/10"
               >
                 <a href="https://github.com/Padumainduwara" target="_blank" className="p-3 bg-white/5 rounded-full text-gray-400 hover:text-white hover:bg-purple-600/50 transition-all border border-white/5">
-                    <Github size={24} />
+                  <Github size={24} />
                 </a>
-                <a href="#" target="_blank" className="p-3 bg-white/5 rounded-full text-gray-400 hover:text-white hover:bg-blue-600/50 transition-all border border-white/5">
-                    <Linkedin size={24} />
+                <a href="https://linkedin.com/in/padumainduwara" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full text-gray-400 hover:text-white hover:bg-blue-600/50 transition-all border border-white/5">
+                  <Linkedin size={24} />
                 </a>
                 <a href="https://facebook.com/padumainduwara" target="_blank" className="p-3 bg-white/5 rounded-full text-gray-400 hover:text-white hover:bg-blue-500/50 transition-all border border-white/5">
-                    <Facebook size={24} />
+                  <Facebook size={24} />
                 </a>
               </motion.div>
             </div>

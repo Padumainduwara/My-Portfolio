@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,14 +6,21 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/private/', '/admin/', '/api/'],
+        disallow: ['/_next/', '/api/', '/*.json$'],
       },
       {
-        userAgent: ['GPTBot', 'Google-Extended', 'CCBot'],
-        allow: '/',
-      }
+        userAgent: 'GPTBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'CCBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'anthropic-ai',
+        disallow: '/',
+      },
     ],
     sitemap: 'https://www.padumainduwara.me/sitemap.xml',
-    host: 'https://www.padumainduwara.me',
   };
 }
