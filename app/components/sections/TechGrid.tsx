@@ -1,128 +1,186 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Globe, Terminal, Database, Layers, Code2, Cpu, Star, Smartphone, Zap } from 'lucide-react';
+import { Cpu, Code2, BrainCircuit, Layout, Database } from 'lucide-react';
+import { Variants } from 'framer-motion';
 
-// Skill Data with "Power Levels" (Percentages)
-const skills = [
-  { name: "React & Next.js", icon: Globe, level: "Expert", percent: 95, color: "text-cyan-400", bar: "bg-cyan-400" },
-  { name: "Node.js & Python", icon: Terminal, level: "Advanced", percent: 85, color: "text-green-400", bar: "bg-green-400" },
-  { name: "Data Science (R)", icon: Database, level: "Advanced", percent: 88, color: "text-blue-400", bar: "bg-blue-400" },
-  { name: "Tailwind CSS", icon: Layers, level: "Expert", percent: 92, color: "text-teal-400", bar: "bg-teal-400" },
-  { name: "MySQL & SQL", icon: Database, level: "Intermediate", percent: 75, color: "text-orange-400", bar: "bg-orange-400" },
-  { name: "C# & .NET", icon: Code2, level: "Intermediate", percent: 70, color: "text-purple-400", bar: "bg-purple-400" },
-  { name: "Mobile Dev", icon: Smartphone, level: "Intermediate", percent: 65, color: "text-pink-400", bar: "bg-pink-400" },
-  { name: "Digital Marketing", icon: Star, level: "Expert", percent: 90, color: "text-yellow-400", bar: "bg-yellow-400" },
+// Organized Skills Data
+const techCategories = [
+  {
+    id: "01",
+    title: "Languages & Technologies",
+    icon: Code2,
+    accent: "text-cyan-400",
+    bgHover: "hover:bg-cyan-400/10",
+    borderHover: "hover:border-cyan-400/50",
+    glow: "shadow-[0_0_15px_rgba(34,211,238,0.4)]",
+    lineGradient: "from-cyan-400/60 to-transparent",
+    dotBg: "bg-cyan-400",
+    skills: [
+      "Next.js", "TypeScript", "React", "Node.js", "Python", "R", "JavaScript", 
+      "C#", ".NET", "C++", "Java", "PHP", "HTML", "CSS", "Tailwind CSS"
+    ]
+  },
+  {
+    id: "02",
+    title: "Data Science & AI",
+    icon: BrainCircuit,
+    accent: "text-purple-400",
+    bgHover: "hover:bg-purple-400/10",
+    borderHover: "hover:border-purple-400/50",
+    glow: "shadow-[0_0_15px_rgba(168,85,247,0.4)]",
+    lineGradient: "from-purple-400/60 to-transparent",
+    dotBg: "bg-purple-400",
+    skills: [
+      "Machine Learning Architectures", "Model Evaluation (RMSE, F1, KS-Testing)", 
+      "TF-IDF Vectors", "Vision Models", "Autoencoders", "Behavior Models", 
+      "Data Preprocessing", "Big Data Analysis"
+    ]
+  },
+  {
+    id: "03",
+    title: "Development & UI/UX",
+    icon: Layout,
+    accent: "text-pink-400",
+    bgHover: "hover:bg-pink-400/10",
+    borderHover: "hover:border-pink-400/50",
+    glow: "shadow-[0_0_15px_rgba(244,114,182,0.4)]",
+    lineGradient: "from-pink-400/60 to-transparent",
+    dotBg: "bg-pink-400",
+    skills: [
+      "Responsive Layouts", "Framer Motion", "Component Architecture", "Environment Optimization"
+    ]
+  },
+  {
+    id: "04",
+    title: "Databases & Systems",
+    icon: Database,
+    accent: "text-orange-400",
+    bgHover: "hover:bg-orange-400/10",
+    borderHover: "hover:border-orange-400/50",
+    glow: "shadow-[0_0_15px_rgba(251,146,60,0.4)]",
+    lineGradient: "from-orange-400/60 to-transparent",
+    dotBg: "bg-orange-400",
+    skills: [
+      "MySQL", "SQL Server", "GitHub", "WordPress", "Android Studio"
+    ]
+  }
 ];
+
+// Animation Variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
 
 export default function TechGrid() {
   return (
-    <section id="tech-stack" className="py-20 md:py-24 relative z-10">
-      {/* Background Ambient Glows (Matched with New Theme) */}
+    <section id="tech-stack" className="py-20 md:py-28 relative z-10 overflow-hidden">
+      {/* Background Ambient Glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-purple-700/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[30%] left-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-cyan-700/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-purple-700/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] left-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-cyan-700/10 rounded-full blur-[120px]" />
         <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Modern Header - Matched Exactly with Experience Section */}
+        {/* Modern Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-12 md:mb-16"
+          className="flex flex-col items-center text-center mb-16 md:mb-20"
         >
+          {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-5 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
             <Cpu size={12} className="text-purple-400" />
             <span className="text-[10px] sm:text-xs font-mono text-gray-300 tracking-widest uppercase">System Capabilities</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 md:mb-5 tracking-tight">
-            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Arsenal</span>
+            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">Architecture</span>
           </h2>
           
-          <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base font-light">
-            The cutting-edge languages, frameworks, and tools powering my high-performance solutions.
+          {/* Summarized Description */}
+          <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-base font-light leading-relaxed">
+            The core languages, frameworks, and AI systems powering my high-performance digital solutions.
           </p>
         </motion.div>
 
-        {/* Tech Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {skills.map((skill, index) => (
+        {/* Categories Layout - Borderless & Fluid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-14 sm:gap-y-16">
+          {techCategories.map((category, index) => (
             <motion.div
-              key={index}
+              key={category.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.05, duration: 0.5 }}
-              className="h-full"
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              /* Here is the change: added ml-4 sm:ml-6 md:ml-0 to push the whole block right on mobile */
+              className="relative pl-6 sm:pl-8 ml-4 sm:ml-6 md:ml-0"
             >
-              {/* --- TECH MODULE CARD --- */}
-              <div className="group relative h-full bg-transparent rounded-[20px] md:rounded-[24px] hover:-translate-y-1 transition-all duration-300">
-                
-                <div className="relative h-full bg-[#050505]/90 border border-white/5 hover:border-white/15 backdrop-blur-xl overflow-hidden rounded-[20px] md:rounded-[24px] shadow-[0_0_20px_rgba(0,0,0,0.2)] group-hover:shadow-[0_15px_30px_-10px_rgba(34,211,238,0.1)] transition-all duration-500">
-                  
-                  {/* Hover Glow Background inside card */}
-                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 bg-gradient-to-br from-white to-transparent pointer-events-none`} />
-                  
-                  {/* Top Bar (Decor Animation) */}
-                  <div className="h-[3px] w-full bg-white/5 relative z-20">
-                    <div className={`absolute top-0 left-0 h-full w-0 group-hover:w-full transition-all duration-700 ease-out ${skill.bar}`} />
-                  </div>
+              {/* Left Glowing Timeline Line */}
+              <div className={`absolute left-0 top-3 bottom-0 w-[2px] bg-gradient-to-b ${category.lineGradient} rounded-full`} />
+              
+              {/* Glowing Dot on Timeline */}
+              <div className="absolute -left-[5px] top-[14px] w-3 h-3 rounded-full bg-[#050505] flex items-center justify-center">
+                <div className={`w-2 h-2 rounded-full ${category.dotBg} animate-pulse shadow-[0_0_10px_currentColor]`} />
+              </div>
 
-                  <div className="p-5 md:p-6 relative z-10 flex flex-col h-[calc(100%-3px)]">
-                    
-                    {/* Header: Icon & Status */}
-                    <div className="flex justify-between items-start mb-5">
-                      <div className={`p-2.5 rounded-xl bg-white/5 border border-white/5 ${skill.color} group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300 shadow-inner`}>
-                        <skill.icon size={18} className="md:w-5 md:h-5" />
-                      </div>
-                      
-                      <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/5 border border-white/5 shadow-inner">
-                        <div className={`w-1.5 h-1.5 rounded-full ${skill.bar} animate-pulse shadow-[0_0_8px_currentColor]`} />
-                        <span className="text-[9px] font-mono text-gray-400 uppercase tracking-widest">Online</span>
-                      </div>
-                    </div>
-
-                    {/* Name & Level */}
-                    <h3 className="text-[15px] md:text-[17px] font-bold text-white mb-1 group-hover:text-gray-100 transition-colors tracking-tight">
-                      {skill.name}
-                    </h3>
-                    <p className="text-[10px] md:text-[11px] text-gray-500 font-mono mb-5 uppercase tracking-widest">
-                      {skill.level}
-                    </p>
-
-                    {/* Progress Bar & Percent Area */}
-                    <div className="mt-auto">
-                      <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                        <motion.div 
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.percent}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                          className={`h-full ${skill.bar} rounded-full shadow-[0_0_10px_currentColor]`}
-                        />
-                      </div>
-                      
-                      {/* Percentage Number (Shows on Hover smoothly) */}
-                      <div className="flex justify-between items-center mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-4">
-                        <span className="text-[9px] text-gray-500 font-mono uppercase tracking-widest">Proficiency</span>
-                        <span className={`text-[10px] font-bold font-mono ${skill.color}`}>{skill.percent}%</span>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  {/* Corner Accent Icon (Zap) */}
-                  <div className="absolute bottom-4 right-4 p-1 opacity-10 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none">
-                    <Zap size={14} className={skill.color} />
-                  </div>
-
+              {/* Category Header */}
+              <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+                <div className={`p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md ${category.accent}`}>
+                  <category.icon className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
+                </div>
+                <div>
+                  <span className="text-[9px] sm:text-[10px] text-gray-500 font-mono tracking-widest block mb-0.5 sm:mb-1">
+                    {category.id} // MODULE
+                  </span>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-100 tracking-tight">
+                    {category.title}
+                  </h3>
                 </div>
               </div>
+
+              {/* Skill Tags Cloud (Mobile Adjusted) */}
+              <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex flex-wrap gap-2 sm:gap-2.5"
+              >
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skillIndex}
+                    variants={itemVariants}
+                    className={`
+                      relative group px-3 py-1.5 sm:px-4 sm:py-2 rounded-full 
+                      bg-white/[0.03] border border-white/[0.05] 
+                      text-xs sm:text-sm text-gray-300 font-medium tracking-wide
+                      transition-all duration-300 ease-out cursor-default
+                      backdrop-blur-sm
+                      ${category.bgHover} ${category.borderHover} hover:text-white
+                      hover:-translate-y-0.5
+                    `}
+                  >
+                    {skill}
+                    {/* Hover Glow Effect behind the text */}
+                    <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:${category.glow}`} />
+                  </motion.div>
+                ))}
+              </motion.div>
+              
             </motion.div>
           ))}
         </div>

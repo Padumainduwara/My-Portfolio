@@ -91,7 +91,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-10 items-start">
           
           {/* Left Side: Contact Info Cards (Darker Version) */}
-          <div className="lg:col-span-2 space-y-3 md:space-y-4 order-2 lg:order-1">
+          <div className="lg:col-span-2 space-y-3 md:space-y-4">
             <ContactCard 
               icon={Phone} 
               title="Call Me" 
@@ -122,13 +122,13 @@ export default function Contact() {
           </div>
 
           {/* Right Side: Next-Level Form */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-3 order-1 lg:order-2"
-          >
+<motion.div 
+  initial={{ opacity: 0, x: 20 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true, margin: "-50px" }}
+  transition={{ duration: 0.6 }}
+  className="lg:col-span-3"
+>
             <div className="p-6 md:p-8 rounded-[32px] bg-gradient-to-br from-[#050505]/90 to-[#050505]/40 backdrop-blur-2xl border border-white/[0.05] relative overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.3)]">
               
               {/* Soft Inner Glow */}
@@ -236,24 +236,24 @@ function ContactCard({ icon: Icon, title, value, href, color, glow, border }: an
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ scale: 1.02 }}
-      // Made background darker to blend with dark theme
-      className={`flex items-center gap-4 p-4 md:p-5 rounded-[24px] bg-[#030303]/80 backdrop-blur-xl border border-white/[0.03] transition-all duration-300 group hover:bg-[#080808]/90 ${glow} ${border}`}
+      // Light glass background instead of black
+      className={`flex items-center gap-4 p-4 md:p-5 rounded-[24px] bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] transition-all duration-300 group hover:bg-white/[0.08] hover:border-white/[0.15] ${glow}`}
     >
-      {/* Darker icon box */}
-      <div className={`shrink-0 p-3 rounded-[16px] bg-black border border-white/[0.04] ${color} group-hover:scale-110 transition-all duration-500 shadow-inner group-hover:bg-[#050505]`}>
+      {/* Icon box made brighter */}
+      <div className={`shrink-0 p-3 rounded-[16px] bg-white/[0.05] border border-white/[0.1] ${color} group-hover:scale-110 transition-all duration-500 shadow-inner group-hover:bg-white/[0.1]`}>
         <Icon size={18} className="md:w-5 md:h-5 drop-shadow-md" strokeWidth={1.5} />
       </div>
       
       <div className="flex-1 min-w-0">
-        <p className="text-[9px] md:text-[10px] font-mono text-gray-500 uppercase tracking-[0.2em] mb-1">{title}</p>
-        <p className="text-[13px] md:text-[15px] font-bold text-gray-300 group-hover:text-white transition-colors truncate tracking-tight">
+        <p className="text-[9px] md:text-[10px] font-mono text-gray-400 uppercase tracking-[0.2em] mb-1">{title}</p>
+        <p className="text-[13px] md:text-[15px] font-bold text-gray-200 group-hover:text-white transition-colors truncate tracking-tight">
           {value}
         </p>
       </div>
       
-      {/* Darker arrow button */}
-      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-black/50 border border-white/[0.03] group-hover:bg-white/[0.05] transition-all duration-300 mr-1 hidden sm:flex">
-        <ArrowRight size={12} className="text-gray-600 group-hover:text-white transition-colors" />
+      {/* Arrow button made brighter */}
+      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/[0.05] border border-white/[0.05] group-hover:bg-white/[0.1] transition-all duration-300 mr-1 hidden sm:flex">
+        <ArrowRight size={12} className="text-gray-300 group-hover:text-white transition-colors" />
       </div>
     </motion.a>
   )

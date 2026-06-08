@@ -73,7 +73,7 @@ export default function Reviews() {
     
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 2500);
+    }, 4000);
 
     return () => clearInterval(timer);
   }, [maxIndex, isHovered]);
@@ -123,7 +123,7 @@ export default function Reviews() {
           <motion.div 
             className="flex -mx-3"
             animate={{ x: `calc(-${currentIndex} * (100% / ${itemsPerPage}))` }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }} 
           >
             {reviews.map((review, index) => (
               <div 

@@ -46,8 +46,8 @@ export default function InfinitePartners() {
 
   useEffect(() => {
     const updateSpeed = () => {
-      // Desktop: 100s | Mobile: 60s (Slow and smooth)
-      setDuration(window.innerWidth < 768 ? 60 : 100);
+      // Desktop: 100s | Mobile: 60s (Premium smooth flow)
+      setDuration(window.innerWidth < 768 ? 100 : 100);
     };
     updateSpeed();
     window.addEventListener('resize', updateSpeed);
@@ -61,6 +61,7 @@ export default function InfinitePartners() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-cyan-700/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-purple-700/10 rounded-full blur-[120px]" />
+        {/* THE FIX: Replaced the external URL with the correct local noise.svg to remove the box effect */}
         <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.03] mix-blend-overlay" />
       </div>
       
@@ -90,17 +91,17 @@ export default function InfinitePartners() {
 
       </div>
 
-      {/* --- SINGLE LINE MARQUEE SECTION --- */}
-      {/* THE FIX: Added CSS Alpha Masking to the parent wrapper instead of fake black boxes */}
+      {/* --- PREMIUM SINGLE LINE MARQUEE --- */}
       <div 
-        className="flex flex-col gap-5 md:gap-6 relative w-full overflow-hidden group py-4"
+        className="flex flex-col gap-5 md:gap-6 relative w-full overflow-hidden group py-6"
         style={{
-          maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
+          // Smooth fade out on edges
+          maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
         }}
       >
         
-        {/* 100% Working Pause-on-Hover CSS Injection */}
+        {/* CSS Injection for Flawless Scroll & Pause */}
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes infinite-scroll {
             0% { transform: translateX(0); }
@@ -115,10 +116,9 @@ export default function InfinitePartners() {
           }
         `}} />
 
-        {/* Thani Line eke Scroll wena Slider eka (Pure CSS Powered) */}
         <div className="flex overflow-visible select-none w-full marquee-container cursor-pointer">
-          <div className="flex gap-4 md:gap-5 min-w-max px-4 marquee-track">
-            {/* Array eka 2 parak map karanawa infinite scroll eka smooth wenna */}
+          <div className="flex gap-4 md:gap-6 min-w-max px-4 marquee-track items-center">
+            {/* Map twice for seamless loop */}
             {[...partners, ...partners].map((partner, index) => (
               <PartnerCard key={index} partner={partner} />
             ))}
@@ -130,12 +130,12 @@ export default function InfinitePartners() {
   );
 }
 
-// --- Next-Level Spotlight Card Component (Cute Size) ---
+// --- Next-Level Solid Glassmorphism Card (Full Color Logos) ---
 function PartnerCard({ partner }: { partner: { name: string; src: string } }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Mouse/Touch tracking logic for the flashlight
+  // Mouse tracking for the dynamic hover aura
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
@@ -145,49 +145,38 @@ function PartnerCard({ partner }: { partner: { name: string; src: string } }) {
   return (
     <div
       onMouseMove={handleMouseMove}
+      // THE FIX: Visible border and glassy background by default!
       className="relative group/card shrink-0 flex items-center justify-center 
-      w-[140px] h-[75px] md:w-[170px] md:h-[90px] /* Cute Sizes */
-      bg-white/[0.01] border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:z-30 hover:shadow-[0_0_30px_rgba(34,211,238,0.2)]"
+      w-[140px] h-[75px] md:w-[170px] md:h-[90px] 
+      bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden 
+      transition-all duration-500 hover:bg-white/[0.05] hover:border-white/10 hover:shadow-[0_10px_30px_-10px_rgba(34,211,238,0.15)] hover:-translate-y-1 hover:z-30 backdrop-blur-sm"
     >
-      {/* 1. Border Glow Flashlight (Follows Cursor) */}
+      {/* 1. Dynamic Flashlight Aura (Only visible on hover) */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-300 group-hover/card:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-500 group-hover/card:opacity-100 z-0"
         style={{
           background: useMotionTemplate`
             radial-gradient(
-              120px circle at ${mouseX}px ${mouseY}px,
-              rgba(34, 211, 238, 0.8),
+              100px circle at ${mouseX}px ${mouseY}px,
+              rgba(168, 85, 247, 0.2),
               transparent 80%
             )
           `,
         }}
       />
       
-      {/* Inner Dark Background */}
-      <div className="absolute inset-[1px] bg-[#050505] rounded-[15px] z-0 transition-colors duration-500 group-hover/card:bg-[#080808]" />
+      {/* Inner Gradient Background (Gives subtle depth) */}
+      <div className="absolute inset-[1px] bg-gradient-to-br from-[#0a0a0a]/80 to-[#050505]/80 rounded-[15px] z-0 transition-colors duration-500 group-hover/card:from-[#111]/80 group-hover/card:to-[#080808]/80" />
 
-      {/* 2. Inner Soft Purple Glow (Follows Cursor inside the card) */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-0 opacity-0 transition duration-500 group-hover/card:opacity-100"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              90px circle at ${mouseX}px ${mouseY}px,
-              rgba(168, 85, 247, 0.2),
-              transparent 100%
-            )
-          `,
-        }}
-      />
-
-      {/* 3. Logo Container (Grayscale -> Full Color + Scale) */}
-      <div className="relative z-10 w-full h-full p-4 md:p-5 opacity-40 grayscale group-hover/card:opacity-100 group-hover/card:grayscale-0 transition-all duration-500 group-hover/card:scale-110 flex items-center justify-center">
+      {/* 2. Strict Uniform Image Wrapper (Ensures all logos look the exact same size) */}
+      <div className="relative z-10 w-[70%] h-[60%] flex items-center justify-center transition-transform duration-500 group-hover/card:scale-110">
         <Image 
           src={partner.src} 
           alt={partner.name} 
           fill 
-          className="object-contain p-2 md:p-3 drop-shadow-2xl"
-          sizes="(max-width: 768px) 140px, 170px"
+          // THE FIX: Original colors always visible. Added a tiny glow on hover.
+          className="object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.02)] group-hover/card:drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-500"
+          sizes="(max-width: 768px) 100px, 140px"
         />
       </div>
     </div> 

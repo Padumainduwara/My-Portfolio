@@ -5,133 +5,166 @@ import { motion } from 'framer-motion';
 import { Globe, ArrowUpRight, ChevronDown, Github, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
-// Project Data - Add your screenshot images to the 'public/projects/' folder
 const projects = [
   {
+    title: "SENTIO 360 Multi-Model Firewall",
+    url: "https://sentio-360-multi-model-firewall-system.onrender.com/site/index.html",
+    github: "https://github.com/Padumainduwara/SENTIO_360-Multi-Model-Firewall-System.git",
+    category: "AI / Cybersecurity",
+    desc: "An advanced multi-model AI firewall system engineered for real-time threat detection and intelligent network security.",
+    color: "from-red-500 to-rose-600",
+    image: "/projects/p15.png",
+    stack: ["Python", "TensorFlow", "FastAPI", "React", "TailwindCSS"]
+  },
+  {
+    title: "Hybrid Diabetes Risk Prediction",
+    url: "Hybrid-Diabetes-Risk-Prediction-System.onrender.com",
+    github: "https://github.com/Padumainduwara/Hybrid-Diabetes-Risk-Prediction-System.git",
+    category: "Machine Learning / Healthcare",
+    desc: "A hybrid machine learning architecture designed for early and accurate prediction of diabetes risk using clinical data analytics.",
+    color: "from-blue-500 to-cyan-500",
+    image: "/projects/p16.png",
+    stack: ["Python", "Scikit-Learn", "Pandas", "Streamlit", "XGBoost"]
+  },
+{
     title: "Let's Help Others LK",
     url: "https://letshelpotherslk.vercel.app/",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/madharaservices/letshelpotherslk.git",
     category: "Non-Profit / Social Service",
     desc: "A dedicated digital platform empowering community service and donation drives in Sri Lanka.",
     color: "from-rose-500 to-orange-500",
-    image: "/projects/p1.png"
+    image: "/projects/p1.png",
+    stack: ["Next.js", "React", "TailwindCSS", "Firebase"]
   },
   {
     title: "Natural Latex Foam Sri Lanka",
     url: "https://naturallatexfoamsrilanka.lk",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/natural-latex-foam.git",
     category: "Manufacturing / Export",
     desc: "Premium 100% natural latex foam mattresses and sleep products manufactured in Sri Lanka.",
     color: "from-green-600 to-lime-500",
-    image: "/projects/p2.png"
+    image: "/projects/p2.png",
+    stack: ["Next.js", "TailwindCSS", "Node.js", "MongoDB"]
   },
   {
     title: "Axiora Blogs",
     url: "https://axiorablogs.com",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/axiora-blogs.git",
     category: "Blog / Content",
-    desc: "A modern blogging platform for tech insights.",
+    desc: "A modern, high-performance blogging platform optimized for tech insights and fast rendering.",
     color: "from-purple-500 to-pink-500",
-    image: "/projects/p3.png"
+    image: "/projects/p3.png",
+    stack: ["Next.js", "React", "Sanity CMS", "TailwindCSS"]
   },
   {
     title: "Madhara Service Center",
     url: "https://madharaservices.com",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/madharaservices/madhara-services.git",
     category: "Business Service",
-    desc: "Digital presence for service center operations.",
+    desc: "Digital presence and management platform for automobile service center operations.",
     color: "from-orange-500 to-red-500",
-    image: "/projects/p4.png"
+    image: "/projects/p4.png",
+    stack: ["React", "Node.js", "TailwindCSS", "PostgreSQL"]
   },
   {
     title: "SKD Event Management",
     url: "https://skdevents.lk",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/skd-events.git",
     category: "Event Management",
-    desc: "Professional full-service event planning and management solutions for all occasions.",
+    desc: "Professional full-service event planning and digital management solutions for all occasions.",
     color: "from-violet-600 to-fuchsia-600",
-    image: "/projects/p5.png"
+    image: "/projects/p5.png",
+    stack: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"]
   },
   {
     title: "Build With Videos",
     url: "https://buildwithvideos.com",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/buildwithlive/buildwithlive.git",
     category: "Service Platform",
-    desc: "Platform for real-time construction updates.",
+    desc: "An innovative digital platform providing real-time construction site updates via video streaming.",
     color: "from-amber-500 to-yellow-500",
-    image: "/projects/p6.png"
+    image: "/projects/p6.png",
+    stack: ["Next.js", "AWS S3", "Node.js", "TailwindCSS"]
   },
   {
     title: "Nexentia JICTS",
     url: "https://www.nexentiajicts.com",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/nexentia-25.git",
     category: "Event / Competition",
-    desc: "ICT competition portal for St. Joseph's College.",
+    desc: "Official ICT competition portal for St. Joseph's College, handling registrations and leaderboards.",
     color: "from-cyan-400 to-blue-600",
-    image: "/projects/p7.png"
+    image: "/projects/p7.png",
+    stack: ["Next.js", "Supabase", "React", "TailwindCSS"]
   },
   {
     title: "Network Company Web",
     url: "https://networxx-web.vercel.app",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/Networxx-web.git",
     category: "Corporate",
-    desc: "Modern landing page for networking solutions.",
+    desc: "A modern, high-conversion landing page designed for enterprise networking solutions.",
     color: "from-gray-200 to-gray-400",
-    image: "/projects/p8.png"
+    image: "/projects/p8.png",
+    stack: ["React", "Vite", "TailwindCSS", "Framer Motion"]
   },
   {
     title: "St. Joseph's Girls School",
     url: "https://stjosephsgirlsschool.com",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/st-josephs.git",
     category: "Educational Institute",
-    desc: "Official website for St. Joseph's Girls School.",
+    desc: "The official academic website and student information portal for St. Joseph's Girls School.",
     color: "from-pink-500 to-rose-500",
-    image: "/projects/p9.png"
+    image: "/projects/p9.png",
+    stack: ["Next.js", "WordPress API", "TailwindCSS", "React"]
   },
   {
     title: "ICT with Sandani",
     url: "https://ictwithsandani.com",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/mr-sandani-portfolio.git",
     category: "Education / Portfolio",
-    desc: "Official educational portal and professional portfolio for ICT education.",
+    desc: "Official educational portal and professional portfolio for an ICT educator.",
     color: "from-emerald-400 to-teal-600",
-    image: "/projects/p10.png"
+    image: "/projects/p10.png",
+    stack: ["Next.js", "React", "TailwindCSS", "Framer Motion"]
   },
   {
     title: "Inova LK",
     url: "https://inova-lk.vercel.app",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/inova-engineering-web.git",
     category: "Tech Innovation",
-    desc: "A next-generation platform delivering innovative digital solutions.",
+    desc: "A next-generation platform delivering innovative digital and engineering solutions.",
     color: "from-cyan-500 to-blue-500",
-    image: "/projects/p11.png"
+    image: "/projects/p11.png",
+    stack: ["Next.js", "TypeScript", "TailwindCSS", "Three.js"]
   },
   {
     title: "Doc Do Online Channeling",
     url: "https://doc-do-clinic-app.vercel.app",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/DocDo-clinic-app.git",
     category: "Healthcare",
-    desc: "Seamless doctor channeling and appointment system.",
+    desc: "A seamless doctor channeling, patient management, and clinic appointment system.",
     color: "from-teal-400 to-blue-500",
-    image: "/projects/p12.png"
+    image: "/projects/p12.png",
+    stack: ["Next.js", "Node.js", "MongoDB", "TailwindCSS"]
   },
   {
     title: "Arabian Gig",
     url: "https://arabiangig.vercel.app",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/arabiangig.git",
     category: "Travel & Tourism",
     desc: "A premier travel platform specializing in tailor-made luxury vacations and immersive experiences.",
     color: "from-teal-400 to-emerald-500",
-    image: "/projects/p13.png"
+    image: "/projects/p13.png",
+    stack: ["Next.js", "React", "TailwindCSS", "PostgreSQL"]
   },
   {
     title: "QR Code Generator",
     url: "https://qr.axioralabs.com",
-    github: "https://github.com/Padumainduwara",
+    github: "https://github.com/Padumainduwara/qr-code-generator.git",
     category: "Tools",
-    desc: "Fast and reliable QR code generation tool.",
+    desc: "A fast, reliable, and customizable QR code generation tool built for everyday utility.",
     color: "from-green-400 to-emerald-600",
-    image: "/projects/p14.png"
+    image: "/projects/p14.png",
+    stack: ["React", "Vite", "Node.js", "TailwindCSS"]
   }
 ];
 
@@ -180,9 +213,9 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                             src={project.image}
                             alt={`${project.title} Preview`}
                             fill
-                            unoptimized // Prevents Next.js compression to keep text sharp
-                            quality={100} // Maximum quality for crisp details
-                            style={{ imageRendering: '-webkit-optimize-contrast' }} // Forces sharp rendering
+                            unoptimized
+                            quality={100}
+                            style={{ imageRendering: '-webkit-optimize-contrast' }}
                             className={`object-cover object-top transition-[object-position] duration-[6s] ease-in-out group-hover:object-bottom z-10 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
                             onLoad={() => setIsImageLoaded(true)}
                         />
@@ -210,6 +243,20 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                     <p className="text-[13px] md:text-sm text-gray-400 leading-relaxed mb-6 group-hover:text-gray-300 transition-colors line-clamp-2">
                         {project.desc}
                     </p>
+
+                    {project.stack && (
+                        <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-6 relative z-20">
+                            {project.stack.map((tech: string, i: number) => (
+                                <span 
+                                    key={i} 
+                                    className="flex items-center gap-1.5 px-2.5 py-1 text-[9px] md:text-[10px] font-mono font-bold tracking-wider rounded-md bg-black/40 border border-white/5 text-gray-400 transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/10 group-hover:text-white shadow-inner"
+                                >
+                                    <span className={`w-1 h-1 rounded-full bg-gradient-to-r ${project.color} shadow-[0_0_5px_currentColor] opacity-70 group-hover:opacity-100 transition-opacity`} />
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Professional Action Buttons */}
                     <div className="mt-auto flex items-center justify-between gap-3 relative z-20">
@@ -240,12 +287,11 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
 
 export default function HostedProjects() {
   const [showAll, setShowAll] = useState(false);
-  const displayedProjects = showAll ? projects : projects.slice(0, 6); // Shows 6 initially
+  const displayedProjects = showAll ? projects : projects.slice(0, 6);
 
   return (
     <section id="projects" className="py-20 md:py-24 relative z-10 overflow-hidden">
       
-      {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[10%] right-[-5%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-purple-700/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[10%] left-[-10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-cyan-700/10 rounded-full blur-[120px]" />
@@ -253,7 +299,6 @@ export default function HostedProjects() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Header matched with Experience.tsx */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -286,7 +331,6 @@ export default function HostedProjects() {
           
         </motion.div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {displayedProjects.map((project, index) => (
             <ProjectCard 
@@ -297,7 +341,6 @@ export default function HostedProjects() {
           ))}
         </div>
 
-        {/* View More Button */}
         {!showAll && projects.length > 6 && (
           <div className="mt-16 flex justify-center">
             <button
