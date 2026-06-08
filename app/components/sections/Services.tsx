@@ -57,7 +57,7 @@ export default function Services() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[10%] left-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-purple-700/10 rounded-full blur-[150px]" />
         <div className="absolute bottom-[10%] right-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-cyan-700/10 rounded-full blur-[150px]" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">

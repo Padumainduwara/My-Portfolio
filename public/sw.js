@@ -19,6 +19,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
+  // Only handle http/https — skip blob:, data:, chrome-extension:, etc.
+  if (!request.url.startsWith('http')) return;
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)

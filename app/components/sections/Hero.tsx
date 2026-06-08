@@ -53,7 +53,7 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 md:left-auto md:right-[15%] -translate-x-1/2 md:translate-x-0 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full border border-purple-500/15 opacity-50" />
 
         {/* Noise Overlay */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-soft-light" />
+        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-5 mix-blend-soft-light" />
 
         {/* Animated Moving Grid */}
         <motion.div

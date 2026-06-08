@@ -13,7 +13,7 @@ const ContentSecurityPolicy = `
   connect-src 'self' https:;
   frame-src 'self' https://*.spline.design;
   worker-src 'self' blob: https:;
-  media-src 'self';
+  media-src 'self' blob: data: https:;
   object-src 'none';
   base-uri 'self';
   form-action 'self' https://api.web3forms.com;
@@ -98,7 +98,6 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
     remotePatterns: [
       { protocol: "https", hostname: "github.com" },
-      { protocol: "https", hostname: "grainy-gradients.vercel.app" },
       { protocol: "https", hostname: "media.licdn.com" },
     ],
     dangerouslyAllowSVG: true,

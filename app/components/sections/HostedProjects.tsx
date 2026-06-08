@@ -189,7 +189,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                     )}
 
                     {/* Overlays to make it look premium */}
-                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] mix-blend-overlay pointer-events-none z-20" />
+                    <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.04] mix-blend-overlay pointer-events-none z-20" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-500 pointer-events-none z-20" />
                 </div>
 
