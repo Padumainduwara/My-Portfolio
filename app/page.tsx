@@ -1,6 +1,5 @@
 import About from './components/sections/About';
 import Hero from './components/sections/Hero';
-export const revalidate = 3600;
 import SkillsMarquee from './components/sections/SkillsMarquee';
 import Experience from './components/sections/Experience';
 import HostedProjects from './components/sections/HostedProjects';
@@ -12,6 +11,8 @@ import TechGrid from './components/sections/TechGrid';
 import Reviews from './components/sections/Reviews';
 import Partners from './components/sections/Partners';
 import Contact from './components/sections/Contact';
+
+export const revalidate = 3600;
 
 export default function Portfolio() {
   return (
