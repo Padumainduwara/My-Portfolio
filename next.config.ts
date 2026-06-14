@@ -11,7 +11,7 @@ const ContentSecurityPolicy = `
   img-src 'self' data: https: blob:;
   font-src 'self' data:;
   connect-src 'self' https:;
-  frame-src 'self' https://*.spline.design;
+  frame-src 'self' https://*.spline.design https://my.spline.design;
   worker-src 'self' blob: https:;
   media-src 'self' blob: data: https:;
   object-src 'none';
@@ -89,12 +89,11 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  /* ── Existing images config (UNTOUCHED) ─────────────────────────────── */
+  /* ── Existing images config (FIXED) ─────────────────────────────── */
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    qualities: [75, 100],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
     remotePatterns: [
       { protocol: "https", hostname: "github.com" },

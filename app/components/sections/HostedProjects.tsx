@@ -213,7 +213,6 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                             src={project.image}
                             alt={`${project.title} Preview`}
                             fill
-                            unoptimized
                             quality={100}
                             style={{ imageRendering: '-webkit-optimize-contrast' }}
                             className={`object-cover object-top transition-[object-position] duration-[6s] ease-in-out group-hover:object-bottom z-10 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
